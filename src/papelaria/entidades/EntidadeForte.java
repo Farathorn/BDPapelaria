@@ -1,18 +1,10 @@
 package papelaria.entidades;
 
-import java.util.ArrayList;
-
 public interface EntidadeForte extends Entidade {
-
-	public String getDescriptor ();
 	
-	public String[] listAttributes ();
-	
-	public void setAttributes (ArrayList <String> set);
-	
-	public int getAttributeCount ();
-	
+	//Toda entidade forte pode ser únicamente identificada por uma chave, este método retorna esta chave
 	public String getCodigo ();
 	
+	//Este método configura a chave
 	public void setCodigo (String codigo);
 }
