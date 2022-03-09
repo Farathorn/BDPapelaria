@@ -46,6 +46,19 @@ public class TelaJFrame extends JFrame {
 			}
 		});
 	}
+	
+	private void clearContentPane () {
+		
+		contentPane.setVisible(false);
+		contentPane.setVisible(true);
+	}
+	
+	private void switchPane (Component comp) {
+		
+		contentPane.removeAll();
+		contentPane.add(comp);
+		clearContentPane();
+	}
 
 	/**
 	 * Create the frame.
@@ -81,8 +94,7 @@ public class TelaJFrame extends JFrame {
 				
 				contentPane.removeAll();
 				contentPane.add(new FranquiaJPanel ());
-				contentPane.setVisible(false);
-				contentPane.setVisible(true);
+				clearContentPane();
 			}
 		});
 		mntmMenuItem_1.setBorder(null);
@@ -90,12 +102,24 @@ public class TelaJFrame extends JFrame {
 		mnNewMenu_1.add(mntmMenuItem_1);
 		
 		JMenuItem mntmMenuItem_2 = new JMenuItem("Funcion\u00E1rio");
+		mntmMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				switchPane(new FuncionarioJPanel ());
+			}
+		});
 		mntmMenuItem_2.setMargin(new Insets(0, 0, 0, 0));
 		mntmMenuItem_2.setBorder(null);
 		mntmMenuItem_2.setOpaque(true);
 		mnNewMenu_1.add(mntmMenuItem_2);
 		
 		JMenuItem mntmMenuItem_3 = new JMenuItem("Vendas");
+		mntmMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				switchPane(new VendasJPanel());
+			}
+		});
 		mntmMenuItem_3.setMargin(new Insets(0, 0, 0, 0));
 		mntmMenuItem_3.setBorder(null);
 		mnNewMenu_1.add(mntmMenuItem_3);
