@@ -13,7 +13,7 @@ public class Vendas implements EntidadeForte {
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"CÛdigo", "Tipo", "Valor", "Forma_de_pagamento", "Parcelamento","Funcion·rio","Cliente", "Fraquia"};
+		String[] lista = {"C√≥digo", "Tipo", "Valor", "Forma_de_pagamento", "Parcelamento","Funcion√°rio","Cliente", "Fraquia"};
 		
 		return lista;
 	}
@@ -40,9 +40,9 @@ public class Vendas implements EntidadeForte {
 
 	private String codigo;
 	private int tipo;
-	private double valor;
-	private double formadepagamento;
-	private double parcelamento;
+	private String valor;
+	private String formadepagamento;
+	private int parcelamento;
 	private String funcionario;
 	private String cliente;
 	private String fraquia;
@@ -67,32 +67,32 @@ public class Vendas implements EntidadeForte {
 		this.tipo = tipo;
 	}
 	
-	public double getValor () {
+	public String getValor () {
 	
 		return valor;
 	}
 	
-	public void setValor (double valor) {
+	public void setValor (String valor) {
 	
 		this.valor = valor;
 	}
 	
-	public double getFormadepagamento () {
+	public String getFormadepagamento () {
 	
 		return formadepagamento;
 	}
 	
-	public void setFormadepagamento (double formadepagamento) {
+	public void setFormadepagamento (String formadepagamento) {
 	
 		this.formadepagamento = formadepagamento;
 	}
 	
-	public double getParcelamento () {
+	public int getParcelamento () {
 	
 		return parcelamento;
 	}
 	
-	public void setParcelamento (double parcelamento) {
+	public void setParcelamento (int parcelamento) {
 	
 		this.parcelamento = parcelamento;
 	}
