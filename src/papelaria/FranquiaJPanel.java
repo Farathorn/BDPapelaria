@@ -15,6 +15,17 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.SwingConstants;
+import java.awt.BorderLayout;
+import javax.swing.BoxLayout;
+import java.awt.GridLayout;
+import java.awt.FlowLayout;
+import javax.swing.SpringLayout;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormSpecs;
+import com.jgoodies.forms.layout.RowSpec;
+import net.miginfocom.swing.MigLayout;
+import java.awt.Dimension;
 
 
 public class FranquiaJPanel extends JPanel {
@@ -26,34 +37,10 @@ public class FranquiaJPanel extends JPanel {
 	public FranquiaJPanel () {
 		
 		setBounds(100, 100, 1016, 861);
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{116, 875, 0};
-		gridBagLayout.rowHeights = new int[]{403, 436, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		setLayout(gridBagLayout);
-		
-		JButton btnAdicionar = new JButton("Adicionar");
-		btnAdicionar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		GridBagConstraints gbc_btnAdicionar = new GridBagConstraints();
-		gbc_btnAdicionar.ipady = 60;
-		gbc_btnAdicionar.anchor = GridBagConstraints.SOUTH;
-		gbc_btnAdicionar.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnAdicionar.insets = new Insets(0, 0, 5, 5);
-		gbc_btnAdicionar.gridx = 0;
-		gbc_btnAdicionar.gridy = 0;
-		add(btnAdicionar, gbc_btnAdicionar);
+		setLayout(new BorderLayout(0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridheight = 2;
-		gbc_scrollPane.gridx = 1;
-		gbc_scrollPane.gridy = 0;
-		add(scrollPane, gbc_scrollPane);
+		add(scrollPane, BorderLayout.CENTER);
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
@@ -148,18 +135,20 @@ public class FranquiaJPanel extends JPanel {
 		});
 		scrollPane.setViewportView(table);
 		
+		JPanel panel = new JPanel();
+		add(panel, BorderLayout.WEST);
+		panel.setLayout(new MigLayout("", "[77px]", "[23px][][][][][][][][][][][][][]"));
+		
+		JPanel panel_1 = new JPanel();
+		panel.add(panel_1, "cell 0 0,alignx left,aligny top");
+		panel_1.setLayout(new BorderLayout(0, 0));
+		
+		JButton btnAdicionar = new JButton("Adicionar");
+		btnAdicionar.setPreferredSize(new Dimension(77, 120));
+		panel.add(btnAdicionar, "cell 0 12");
+		
 		JButton btnRemover = new JButton("Remover");
-		btnRemover.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		GridBagConstraints gbc_btnRemover = new GridBagConstraints();
-		gbc_btnRemover.ipady = 30;
-		gbc_btnRemover.anchor = GridBagConstraints.NORTHEAST;
-		gbc_btnRemover.insets = new Insets(0, 0, 0, 5);
-		gbc_btnRemover.gridx = 0;
-		gbc_btnRemover.gridy = 1;
-		add(btnRemover, gbc_btnRemover);
+		panel.add(btnRemover, "cell 0 13");
 
 	}
 }
