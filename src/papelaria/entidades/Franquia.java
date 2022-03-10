@@ -33,6 +33,17 @@ public class Franquia implements EntidadeForte {
 		return 3;
 	}
 	
+	public String[] getAttributes () {
+		
+		String[] atributos = new String[getAttributeCount()];
+		
+		atributos[0] = codigo;
+		atributos[1] = endereco;
+		atributos[2] = Double.toString(cofre);
+		
+		return atributos;
+	}
+	
 	private String codigo;
 	private String endereco;
 	private double cofre;

@@ -34,6 +34,18 @@ public class Shopping implements EntidadeForte {
 		return 4;
 	}
 	
+	public String[] getAttributes () {
+		
+		String[] atributos = new String[getAttributeCount()];
+		
+		atributos[0] = codigo;
+		atributos[1] = nome;
+		atributos[2] = endereco;
+		atributos[3] = Double.toString(aluguel);
+		
+		return atributos;
+	}
+	
 	private String codigo;
 	private String nome;
 	private String endereco;

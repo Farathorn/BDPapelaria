@@ -24,7 +24,7 @@ public class Pagamento extends Custo {
 			
 			setValor(Double.parseDouble(set.get(0)));
 			setDescricao(set.get(1));
-			Tipo = set.get(2);
+			tipo = set.get(2);
 			funcionario.setCodigo(set.get(3));
 		}
 	}
@@ -33,18 +33,30 @@ public class Pagamento extends Custo {
 		
 		return 4;
 	}
+	
+	public String[] getAttributes () {
+		
+		String[] atributos = new String[getAttributeCount()];
+		
+		atributos[0] = Double.toString(getValor());
+		atributos[1] = getDescricao();
+		atributos[2] = tipo;
+		atributos[3] = funcionario.getCodigo();
+		
+		return atributos;
+	}
 
-	private String Tipo;
+	private String tipo;
 	private Funcionario funcionario;
 	
 	public String getTipo () {
 	
-		return Tipo;
+		return tipo;
 	}
 	
 	public void setTipo (String tipo) {
 	
-		Tipo = tipo;
+		this.tipo = tipo;
 	}
 	
 	public Funcionario getFuncionario () {

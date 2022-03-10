@@ -35,6 +35,20 @@ public class Produto implements EntidadeForte {
 		
 		return 6;
 	}
+	
+	public String[] getAttributes () {
+		
+		String[] atributos = new String[getAttributeCount()];
+		
+		atributos[0] = codigo;
+		atributos[1] = Integer.toString(quantidade);
+		atributos[2] = descricao;
+		atributos[3] = Double.toString(quantidade);
+		atributos[4] = Double.toString(precoTotal);
+		atributos[5] = estoque.getCodigo();
+		
+		return atributos;
+	}
 
 	private String codigo;
 	private int quantidade;

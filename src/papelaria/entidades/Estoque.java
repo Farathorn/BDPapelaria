@@ -33,6 +33,17 @@ public class Estoque implements EntidadeForte {
 		return 3;
 	}
 	
+	public String[] getAttributes () {
+		
+		String[] atributos = new String[getAttributeCount()];
+		
+		atributos[0] = codigo;
+		atributos[1] = contato;
+		atributos[2] = endereco;
+		
+		return atributos;
+	}
+	
 	private String codigo;
 	private String contato;
 	private String endereco;

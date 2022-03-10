@@ -15,4 +15,7 @@ public interface Entidade {
 	
 	//Retorna quantos atributos a entidade possui
 	public int getAttributeCount ();
+	
+	//Retorna os valores dos atributos sequencialmente em um array de Strings
+	public String[] getAttributes ();
 }

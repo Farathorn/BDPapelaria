@@ -32,6 +32,16 @@ public class Custo implements Entidade {
 		return 2;
 	}
 	
+	public String[] getAttributes () {
+		
+		String[] atributos = new String[getAttributeCount()];
+		
+		atributos[0] = Double.toString(valor);
+		atributos[1] = descricao;
+		
+		return atributos;
+	}
+	
 	private double valor;
 	private String descricao;
 	
