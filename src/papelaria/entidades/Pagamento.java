@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Pagamento extends Custo {
 	
-	private String descriptor = "Pagamento";
+	public static String descriptor = "Pagamento";
+	public static int attributeCount = 4;
 	
 	public String getDescriptor () {
 		
@@ -13,7 +14,7 @@ public class Pagamento extends Custo {
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"Valor", "Descrição", "Tipo", "Funcionário"};
+		String[] lista = {"Valor", "Descriï¿½ï¿½o", "Tipo", "Funcionï¿½rio"};
 		
 		return lista;
 	}
@@ -25,13 +26,26 @@ public class Pagamento extends Custo {
 			setValor(Double.parseDouble(set.get(0)));
 			setDescricao(set.get(1));
 			tipo = set.get(2);
+			funcionario = new Funcionario();
 			funcionario.setCodigo(set.get(3));
 		}
 	}
 	
 	public int getAttributeCount () {
 		
-		return 4;
+		return attributeCount;
+	}
+	
+	public String[] getAttributes () {
+		
+		String[] atributos = new String[getAttributeCount()];
+		
+		atributos[0] = Double.toString(getValor());
+		atributos[1] = getDescricao();
+		atributos[2] = tipo;
+		atributos[3] = funcionario.getCodigo();
+		
+		return atributos;
 	}
 	
 	public String[] getAttributes () {
@@ -47,7 +61,11 @@ public class Pagamento extends Custo {
 	}
 
 	private String tipo;
+<<<<<<< HEAD
 	private Funcionario funcionario;
+=======
+	private Funcionario funcionario = new Funcionario();
+>>>>>>> origin/lucas
 	
 	public String getTipo () {
 	

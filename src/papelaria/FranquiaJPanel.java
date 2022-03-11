@@ -10,6 +10,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -25,12 +27,51 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
 import net.miginfocom.swing.MigLayout;
-
+import papelaria.dao.TabelaDAO;
+import papelaria.entidades.Entidade;
+import papelaria.entidades.Franquia;
 import java.awt.Dimension;
 
 
 public class FranquiaJPanel extends JPanel {
 	private JTable table;
+	TabelaDAO dao = DAOFactory.createDAO();
+	
+	private void preencherTable () {
+		
+		Entidade[] filtro = dao.listar(new Franquia());
+		Entidade[] lista;
+		if (filtro == null) {
+			
+			table.setModel(new DefaultTableModel(null, new String[] {
+					"C\u00F3digo", "Endere\u00E7o", "Cofre"
+			}));
+		}
+		else {
+			
+			lista = filtro;
+			String[][] tabela = new String[lista.length][new Franquia().getAttributeCount()];
+			
+			if (lista.length > 0) {
+				
+				for (int i = 0; i < lista.length; i ++) {
+					
+					tabela[i] = lista[i].getAttributes();
+				}
+				
+				DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+				for (int i = 0; i < table.getRowCount(); i ++) {
+					
+					dtm.removeRow(i);
+				}
+				
+				table.setModel(new DefaultTableModel(tabela, new String[] {
+						"C\u00F3digo", "Endere\u00E7o", "Cofre"
+				}));
+			}
+		}
+		
+	}
 
 	/**
 	 * Create the panel.
@@ -135,6 +176,8 @@ public class FranquiaJPanel extends JPanel {
 			}
 		});
 		scrollPane.setViewportView(table);
+		
+		preencherTable();
 		
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.WEST);
