@@ -15,25 +15,6 @@ public class ComprasJFrame extends JFrame {
 	private JTable table;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main (String[] args) {
-
-		EventQueue.invokeLater(new Runnable() {
-
-			public void run () {
-
-				try {
-					ComprasJFrame frame = new ComprasJFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public ComprasJFrame () {

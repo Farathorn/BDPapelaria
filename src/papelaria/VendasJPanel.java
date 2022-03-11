@@ -118,6 +118,7 @@ public class VendasJPanel extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				//Qual venda foi selecionada ainda não está implementado
 				ComprasJFrame itens = new ComprasJFrame();
 				itens.setTitle("Itens da venda " + "");
 				itens.setVisible(true);

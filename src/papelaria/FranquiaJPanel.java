@@ -25,6 +25,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
 import net.miginfocom.swing.MigLayout;
+
 import java.awt.Dimension;
 
 
@@ -144,6 +145,17 @@ public class FranquiaJPanel extends JPanel {
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
 		JButton btnAdicionar = new JButton("Adicionar");
+		btnAdicionar.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				AdicionarFranquiaJFrame adicionar = new AdicionarFranquiaJFrame();
+				adicionar.requestFocus();
+				adicionar.setLocationRelativeTo(table);
+				adicionar.setLocation(300, 300);
+				adicionar.setVisible(true);
+			}
+		});
 		btnAdicionar.setPreferredSize(new Dimension(77, 120));
 		panel.add(btnAdicionar, "cell 0 12");
 		
