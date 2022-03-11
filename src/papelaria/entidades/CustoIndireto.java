@@ -14,7 +14,7 @@ public class CustoIndireto extends Custo {
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"Valor", "Descrição", "Fornecedor", "Estoque"};
+		String[] lista = {"Valor", "Descriï¿½ï¿½o", "Fornecedor", "Estoque"};
 		
 		return lista;
 	}
@@ -33,18 +33,6 @@ public class CustoIndireto extends Custo {
 	public int getAttributeCount () {
 		
 		return attributeCount;
-	}
-	
-	public String[] getAttributes () {
-		
-		String[] atributos = new String[getAttributeCount()];
-		
-		atributos[0] = Double.toString(getValor());
-		atributos[1] = getDescricao();
-		atributos[2] = fornecedor.getCodigo();
-		atributos[3] = estoque.getCodigo();
-		
-		return atributos;
 	}
 	
 	public String[] getAttributes () {

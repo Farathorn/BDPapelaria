@@ -47,18 +47,6 @@ public class Cliente implements EntidadeForte {
 		return atributos;
 	}
 	
-	public String[] getAttributes () {
-		
-		String[] atributos = new String[getAttributeCount()];
-		
-		atributos[0] = cpf;
-		atributos[1] = nome;
-		atributos[2] = telefone;
-		atributos[3] = Double.toString(gastoTotal);
-		
-		return atributos;
-	}
-	
 	private String cpf;
 	private String nome;
 	private String telefone;

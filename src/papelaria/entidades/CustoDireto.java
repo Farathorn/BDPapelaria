@@ -14,7 +14,7 @@ public class CustoDireto extends Custo {
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"Valor", "Descrição", "Shopping"};
+		String[] lista = {"Valor", "Descriï¿½ï¿½o", "Shopping"};
 		
 		return lista;
 	}
@@ -32,17 +32,6 @@ public class CustoDireto extends Custo {
 	public int getAttributeCount () {
 		
 		return attributeCount;
-	}
-	
-	public String[] getAttributes () {
-		
-		String[] atributos = new String[getAttributeCount()];
-		
-		atributos[0] = Double.toString(getValor());
-		atributos[1] = getDescricao();
-		atributos[2] = shopping.getCodigo();
-		
-		return atributos;
 	}
 	
 	public String[] getAttributes () {

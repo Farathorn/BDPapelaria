@@ -14,7 +14,7 @@ public class Fornecedor implements EntidadeForte{
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"Código", "Contato", "Endereço"};
+		String[] lista = {"Cï¿½digo", "Contato", "Endereï¿½o"};
 		
 		return lista;
 	}
@@ -32,17 +32,6 @@ public class Fornecedor implements EntidadeForte{
 	public int getAttributeCount () {
 		
 		return attributeCount;
-	}
-	
-	public String[] getAttributes () {
-		
-		String[] atributos = new String[getAttributeCount()];
-		
-		atributos[0] = codigo;
-		atributos[1] = contato;
-		atributos[2] = endereco;
-		
-		return atributos;
 	}
 	
 	public String[] getAttributes () {

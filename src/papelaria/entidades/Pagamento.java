@@ -47,25 +47,9 @@ public class Pagamento extends Custo {
 		
 		return atributos;
 	}
-	
-	public String[] getAttributes () {
-		
-		String[] atributos = new String[getAttributeCount()];
-		
-		atributos[0] = Double.toString(getValor());
-		atributos[1] = getDescricao();
-		atributos[2] = tipo;
-		atributos[3] = funcionario.getCodigo();
-		
-		return atributos;
-	}
 
 	private String tipo;
-<<<<<<< HEAD
 	private Funcionario funcionario;
-=======
-	private Funcionario funcionario = new Funcionario();
->>>>>>> origin/lucas
 	
 	public String getTipo () {
 	

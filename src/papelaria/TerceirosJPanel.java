@@ -1,25 +1,14 @@
 package papelaria;
 
 import java.awt.BorderLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import net.miginfocom.swing.MigLayout;
 import papelaria.dao.TabelaDAO;
 import papelaria.entidades.Entidade;
 import papelaria.entidades.Estoque;
 import papelaria.entidades.Fornecedor;
-import papelaria.entidades.Funcionario;
 import papelaria.entidades.Shopping;
 
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import java.awt.Panel;
-import java.util.Arrays;
 import java.awt.Dimension;
-import java.awt.Panel;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
