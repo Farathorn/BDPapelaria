@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Custo implements Entidade {
 	
-	private String descriptor = "Custo";
+	public static String descriptor = "Custo";
+	public static int attributeCount = 2;
 	
 	public String getDescriptor () {
 		
@@ -13,7 +14,7 @@ public class Custo implements Entidade {
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"Valor", "Descrição"};
+		String[] lista = {"Valor", "Descriï¿½ï¿½o"};
 		
 		return lista;
 	}
@@ -29,7 +30,7 @@ public class Custo implements Entidade {
 	
 	public int getAttributeCount () {
 		
-		return 2;
+		return attributeCount;
 	}
 	
 	public String[] getAttributes () {

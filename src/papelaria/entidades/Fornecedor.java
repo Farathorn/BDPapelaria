@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Fornecedor implements EntidadeForte{
 	
-	private String descriptor = "Fornecedor";
+	public static String descriptor = "Fornecedor";
+	public static int attributeCount = 3;
 	
 	public String getDescriptor () {
 		
@@ -13,7 +14,7 @@ public class Fornecedor implements EntidadeForte{
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"Código", "Contato", "Endereço"};
+		String[] lista = {"Cï¿½digo", "Contato", "Endereï¿½o"};
 		
 		return lista;
 	}
@@ -30,7 +31,7 @@ public class Fornecedor implements EntidadeForte{
 	
 	public int getAttributeCount () {
 		
-		return 3;
+		return attributeCount;
 	}
 	
 	public String[] getAttributes () {

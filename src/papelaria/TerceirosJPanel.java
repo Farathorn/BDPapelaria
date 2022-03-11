@@ -1,28 +1,136 @@
 package papelaria;
 
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import net.miginfocom.swing.MigLayout;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+import papelaria.dao.TabelaDAO;
+import papelaria.entidades.Entidade;
+import papelaria.entidades.Estoque;
+import papelaria.entidades.Fornecedor;
+import papelaria.entidades.Shopping;
+
 import java.awt.Panel;
+import java.awt.Dimension;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JButton;
-import java.awt.Dimension;
-import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class TerceirosJPanel extends JPanel {
-	private JTable table_1;
-	private JTable table_2;
-	private JTable table;
+	private JTable fornecedorTable;
+	private JTable shoppingTable;
+	private JTable estoqueTable;
+	TabelaDAO dao = DAOFactory.createDAO();
+
+	private void preencherTableEstoque () {
+		
+		Entidade[] filtro = dao.listar(new Estoque());
+		Entidade[] lista;
+		if (filtro == null) {
+			
+			estoqueTable.setModel(new DefaultTableModel(null, new String[] {
+					"C\u00F3digo", "Contato", "Endere\u00E7o"
+			}));
+		}
+		else {
+			
+			lista = filtro;
+			String[][] tabela = new String[lista.length][new Estoque().getAttributeCount()];
+			
+			if (lista.length > 0) {
+				
+				for (int i = 0; i < lista.length; i ++) {
+					
+					tabela[i] = lista[i].getAttributes();
+				}
+				
+				DefaultTableModel dtm = (DefaultTableModel) estoqueTable.getModel();
+				for (int i = 0; i < estoqueTable.getRowCount(); i ++) {
+					
+					dtm.removeRow(i);
+				}
+				
+				estoqueTable.setModel(new DefaultTableModel(tabela, new String[] {
+						"C\u00F3digo", "Contato", "Endere\u00E7o"
+				}));
+			}
+		}
+	}
+
+	private void preencherTableFornecedor () {
+		
+		Entidade[] filtro = dao.listar(new Fornecedor());
+		Entidade[] lista;
+		if (filtro == null) {
+			
+			fornecedorTable.setModel(new DefaultTableModel(null, new String[] {
+					"C\u00F3digo", "Contato", "Endere\u00E7o"
+			}));
+		}
+		else {
+			
+			lista = filtro;
+			String[][] tabela = new String[lista.length][new Fornecedor().getAttributeCount()];
+			
+			if (lista.length > 0) {
+				
+				for (int i = 0; i < lista.length; i ++) {
+					
+					tabela[i] = lista[i].getAttributes();
+				}
+				
+				DefaultTableModel dtm = (DefaultTableModel) fornecedorTable.getModel();
+				for (int i = 0; i < fornecedorTable.getRowCount(); i ++) {
+					
+					dtm.removeRow(i);
+				}
+				
+				fornecedorTable.setModel(new DefaultTableModel(tabela, new String[] {
+						"C\u00F3digo", "Contato", "Endere\u00E7o"
+				}));
+			}
+		}		
+	}
+
+	private void preencherTableShopping () {
+		
+		Entidade[] filtro = dao.listar(new Shopping());
+		Entidade[] lista;
+		if (filtro == null) {
+			
+			shoppingTable.setModel(new DefaultTableModel(null, new String[] {
+					"C\u00F3digo", "Nome", "Endere\u00E7o", "Aluguel"
+			}));
+		}
+		else {
+			
+			lista = filtro;
+			String[][] tabela = new String[lista.length][new Shopping().getAttributeCount()];
+			
+			if (lista.length > 0) {
+				
+				for (int i = 0; i < lista.length; i ++) {
+					
+					tabela[i] = lista[i].getAttributes();
+				}
+				
+				DefaultTableModel dtm = (DefaultTableModel) shoppingTable.getModel();
+				for (int i = 0; i < shoppingTable.getRowCount(); i ++) {
+					
+					dtm.removeRow(i);
+				}
+				
+				shoppingTable.setModel(new DefaultTableModel(tabela, new String[] {
+						"C\u00F3digo", "Nome", "Endere\u00E7o", "Aluguel"
+				}));
+			}
+		}
+	}
 
 	/**
 	 * Create the panel.
@@ -39,8 +147,8 @@ public class TerceirosJPanel extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		panel.add(scrollPane);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
+		estoqueTable = new JTable();
+		estoqueTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
 				{null, null, null},
@@ -64,7 +172,7 @@ public class TerceirosJPanel extends JPanel {
 				{null, null, null},
 			},
 			new String[] {
-				"C\u00F3digo", "Contato", "Endere\u00E7o"
+				"Código", "Contato", "Endereço"
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
@@ -74,8 +182,10 @@ public class TerceirosJPanel extends JPanel {
 				return columnEditables[column];
 			}
 		});
-		table.setPreferredScrollableViewportSize(new Dimension(600, 200));
-		scrollPane.setViewportView(table);
+		estoqueTable.setPreferredScrollableViewportSize(new Dimension(600, 200));
+		scrollPane.setViewportView(estoqueTable);
+		
+		preencherTableEstoque();
 		
 		Panel panel_8 = new Panel();
 		panel.add(panel_8, BorderLayout.NORTH);
@@ -88,11 +198,22 @@ public class TerceirosJPanel extends JPanel {
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
 		JButton btnAdicionar_1 = new JButton("Adicionar");
-		btnAdicionar_1.setPreferredSize(new Dimension(77, 130));
+
+		btnAdicionar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				AdicionarTerceiroEstoqueJFrame adicionar = new AdicionarTerceiroEstoqueJFrame();
+				adicionar.setLocationRelativeTo(estoqueTable);
+				adicionar.setLocation(300, 300);
+				adicionar.setVisible(true);
+			}
+		});
+
+		btnAdicionar_1.setPreferredSize(new Dimension(40, 100));
 		panel_3.add(btnAdicionar_1, BorderLayout.CENTER);
 		
 		JButton btnRemover_1 = new JButton("Remover");
-		btnRemover_1.setPreferredSize(new Dimension(75, 130));
+		btnRemover_1.setPreferredSize(new Dimension(100, 40));
 		panel_3.add(btnRemover_1, BorderLayout.SOUTH);
 		
 		Panel panel_1 = new Panel();
@@ -102,8 +223,8 @@ public class TerceirosJPanel extends JPanel {
 		JScrollPane scrollPane_3 = new JScrollPane();
 		panel_1.add(scrollPane_3);
 		
-		table_2 = new JTable();
-		table_2.setModel(new DefaultTableModel(
+		shoppingTable = new JTable();
+		shoppingTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null},
 				{null, null, null, null},
@@ -127,7 +248,7 @@ public class TerceirosJPanel extends JPanel {
 				{null, null, null, null},
 			},
 			new String[] {
-				"C\u00F3digo", "Nome", "Endere\u00E7o", "Aluguel"
+				"Código", "Nome", "Endereço", "Aluguel"
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
@@ -137,8 +258,10 @@ public class TerceirosJPanel extends JPanel {
 				return columnEditables[column];
 			}
 		});
-		table_2.setPreferredScrollableViewportSize(new Dimension(600, 200));
-		scrollPane_3.setViewportView(table_2);
+		shoppingTable.setPreferredScrollableViewportSize(new Dimension(600, 200));
+		scrollPane_3.setViewportView(shoppingTable);
+		
+		preencherTableShopping();
 		
 		Panel panel_7 = new Panel();
 		panel_1.add(panel_7, BorderLayout.NORTH);
@@ -151,6 +274,17 @@ public class TerceirosJPanel extends JPanel {
 		panel_5.setLayout(new BorderLayout(0, 0));
 		
 		JButton btnAdicionar = new JButton("Adicionar");
+
+		btnAdicionar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+				AdicionarTerceiroShoppingJFrame adicionar = new AdicionarTerceiroShoppingJFrame();
+                adicionar.requestFocus();
+                adicionar.setLocationRelativeTo(shoppingTable);
+                adicionar.setLocation(300, 300);
+                adicionar.setVisible(true);
+            }
+        });
 		btnAdicionar.setPreferredSize(new Dimension(77, 130));
 		panel_5.add(btnAdicionar, BorderLayout.CENTER);
 		
@@ -165,8 +299,8 @@ public class TerceirosJPanel extends JPanel {
 		JScrollPane scrollPane_2 = new JScrollPane();
 		panel_2.add(scrollPane_2);
 		
-		table_1 = new JTable();
-		table_1.setModel(new DefaultTableModel(
+		fornecedorTable = new JTable();
+		fornecedorTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
 				{null, null, null},
@@ -190,7 +324,7 @@ public class TerceirosJPanel extends JPanel {
 				{null, null, null},
 			},
 			new String[] {
-				"C\u00F3digo", "Contato", "Endere\u00E7o"
+				"Código", "Contato", "Endereço"
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
@@ -200,8 +334,10 @@ public class TerceirosJPanel extends JPanel {
 				return columnEditables[column];
 			}
 		});
-		table_1.setPreferredScrollableViewportSize(new Dimension(600, 200));
-		scrollPane_2.setViewportView(table_1);
+		fornecedorTable.setPreferredScrollableViewportSize(new Dimension(600, 200));
+		scrollPane_2.setViewportView(fornecedorTable);
+		
+		preencherTableFornecedor();
 		
 		Panel panel_6 = new Panel();
 		panel_2.add(panel_6, BorderLayout.NORTH);
@@ -214,6 +350,16 @@ public class TerceirosJPanel extends JPanel {
 		panel_4.setLayout(new BorderLayout(0, 0));
 		
 		JButton btnAdicionar_2 = new JButton("Adicionar");
+
+		btnAdicionar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				AdicionarTerceiroEstoqueJFrame adicionar = new AdicionarTerceiroEstoqueJFrame();
+				adicionar.setLocationRelativeTo(estoqueTable);
+				adicionar.setLocation(300, 300);
+				adicionar.setVisible(true);
+			}
+		});
 		btnAdicionar_2.setMaximumSize(new Dimension(77, 130));
 		btnAdicionar_2.setPreferredSize(new Dimension(77, 130));
 		panel_4.add(btnAdicionar_2, BorderLayout.CENTER);

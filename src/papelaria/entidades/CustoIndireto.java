@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class CustoIndireto extends Custo {
 
-	private String descriptor = "CustoIndireto";
+	public static String descriptor = "Custo_Indireto";
+	public static int attributeCount = 4;
 	
 	public String getDescriptor () {
 		
@@ -13,7 +14,7 @@ public class CustoIndireto extends Custo {
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"Valor", "Descrição", "Fornecedor", "Estoque"};
+		String[] lista = {"Valor", "Descriï¿½ï¿½o", "Fornecedor", "Estoque"};
 		
 		return lista;
 	}
@@ -31,7 +32,7 @@ public class CustoIndireto extends Custo {
 	
 	public int getAttributeCount () {
 		
-		return 4;
+		return attributeCount;
 	}
 	
 	public String[] getAttributes () {

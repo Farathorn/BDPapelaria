@@ -1,22 +1,15 @@
 package papelaria;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import java.awt.Frame;
-import java.awt.Point;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Dialog.ModalExclusionType;
-import java.awt.Window.Type;
-import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 
 public class AdicionarFuncionarioJFrame extends JFrame {
@@ -31,6 +24,7 @@ public class AdicionarFuncionarioJFrame extends JFrame {
 	private JTextField textField_6;
 	private JTextField textField_7;
 	private JTextField textField_8;
+	private JTextField textField_9;
 
 	/**
 	 * Create the frame.
@@ -41,7 +35,7 @@ public class AdicionarFuncionarioJFrame extends JFrame {
 		setResizable(false);
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 650, 368);
+		setBounds(100, 100, 650, 410);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -52,85 +46,94 @@ public class AdicionarFuncionarioJFrame extends JFrame {
 		panel.setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(160, 11, 100, 20);
+		textField.setBounds(160, 10, 120, 20);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("CPF:");
-		lblNewLabel.setBounds(30, 14, 46, 14);
+		lblNewLabel.setBounds(30, 10, 46, 14);
 		panel.add(lblNewLabel);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(160, 75, 328, 20);
+		textField_1.setBounds(160, 40, 300, 20);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Carteira de Trabalho:");
-		lblNewLabel_1.setBounds(30, 78, 125, 14);
+		JLabel lblNewLabel_1 = new JLabel("Nome:");
+		lblNewLabel_1.setBounds(30, 40, 300, 14);
 		panel.add(lblNewLabel_1);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(160, 106, 100, 20);
+		textField_2.setBounds(160, 70, 120, 20);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Expediente:");
-		lblNewLabel_2.setBounds(30, 109, 66, 14);
+		JLabel lblNewLabel_2 = new JLabel("Carteira de Trabalho:");
+		lblNewLabel_2.setBounds(30, 70, 120, 14);
 		panel.add(lblNewLabel_2);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(160, 42, 328, 20);
+		textField_3.setBounds(160, 100, 300, 20);
 		panel.add(textField_3);
 		textField_3.setColumns(10);
 		
-		JLabel lblNewLabel_3 = new JLabel("Nome:");
-		lblNewLabel_3.setBounds(30, 45, 46, 14);
+		JLabel lblNewLabel_3 = new JLabel("Cargo:");
+		lblNewLabel_3.setBounds(30, 100, 300, 14);
 		panel.add(lblNewLabel_3);
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(160, 137, 86, 20);
+		textField_4.setBounds(160, 130, 120, 20);
 		panel.add(textField_4);
 		textField_4.setColumns(10);
 		
-		JLabel lblNewLabel_4 = new JLabel("Sal\u00E1rio:");
-		lblNewLabel_4.setBounds(30, 140, 46, 14);
+		JLabel lblNewLabel_4 = new JLabel("Expediente:");
+		lblNewLabel_4.setBounds(30, 130, 120, 14);
 		panel.add(lblNewLabel_4);
 		
 		textField_5 = new JTextField();
-		textField_5.setBounds(160, 168, 86, 20);
+		textField_5.setBounds(160, 160, 120, 20);
 		panel.add(textField_5);
 		textField_5.setColumns(10);
 		
-		JLabel lblNewLabel_5 = new JLabel("Faltas:");
-		lblNewLabel_5.setBounds(30, 171, 46, 14);
+		JLabel lblNewLabel_5 = new JLabel("Sálario Base:");
+		lblNewLabel_5.setBounds(30, 160, 100, 14);
 		panel.add(lblNewLabel_5);
 		
 		textField_6 = new JTextField();
-		textField_6.setBounds(160, 199, 86, 20);
+		textField_6.setBounds(160, 190, 120, 20);
 		panel.add(textField_6);
 		textField_6.setColumns(10);
 		
-		JLabel lblNewLabel_6 = new JLabel("Vendas:");
-		lblNewLabel_6.setBounds(30, 202, 46, 14);
+		JLabel lblNewLabel_6 = new JLabel("Faltas:");
+		lblNewLabel_6.setBounds(30, 190, 100, 14);
 		panel.add(lblNewLabel_6);
 		
 		textField_7 = new JTextField();
-		textField_7.setBounds(160, 230, 86, 20);
+		textField_7.setBounds(160, 220, 120, 20);
 		panel.add(textField_7);
 		textField_7.setColumns(10);
 		
-		JLabel lblNewLabel_7 = new JLabel("Ticket M\u00E9dio:");
-		lblNewLabel_7.setBounds(30, 233, 110, 14);
+		JLabel lblNewLabel_7 = new JLabel("Venda do Mês:");
+		lblNewLabel_7.setBounds(30, 220, 100, 14);
 		panel.add(lblNewLabel_7);
 		
 		textField_8 = new JTextField();
-		textField_8.setBounds(160, 261, 86, 20);
+		textField_8.setBounds(160, 250, 120, 20);
 		panel.add(textField_8);
 		textField_8.setColumns(10);
 		
-		JLabel lblNewLabel_8 = new JLabel("Franquia:");
-		lblNewLabel_8.setBounds(30, 264, 66, 14);
+		JLabel lblNewLabel_8 = new JLabel("Ticket Médio:");
+		lblNewLabel_8.setBounds(30, 250, 100, 14);
 		panel.add(lblNewLabel_8);
+
+		textField_9 = new JTextField();
+		textField_9.setBounds(160, 280, 120, 20);
+		panel.add(textField_9);
+		textField_9.setColumns(10);
+		
+		JLabel lblNewLabel_9 = new JLabel("Franquia:");
+		lblNewLabel_9.setBounds(30, 280, 100, 14);
+		panel.add(lblNewLabel_9);
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.SOUTH);
