@@ -3,8 +3,14 @@ package papelaria;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
+import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionListener;
+import java.awt.Desktop;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
 
 
 public class VendasJPanel extends JPanel {
@@ -101,13 +107,35 @@ public class VendasJPanel extends JPanel {
 		scrollPane.setViewportView(table);
 		
 		JButton btnAdicionar = new JButton("Adicionar");
+		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				AdicionarVendaJFrame adicionar = new AdicionarVendaJFrame();
+				adicionar.setLocationRelativeTo(table);
+				adicionar.setLocation(300, 300);
+				adicionar.setVisible(true);
+			}
+		});
 		btnAdicionar.setBounds(10, 300, 123, 52);
 		add(btnAdicionar);
 		
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.setBounds(44, 370, 89, 23);
 		add(btnRemover);
+		
+		JButton btnNewButton = new JButton("Produtos da\n Compra");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//Qual venda foi selecionada ainda não está implementado
+				ComprasJFrame itens = new ComprasJFrame();
+				itens.setTitle("Itens da venda " + "");
+				itens.setVisible(true);
+						
+			}
+		});
+		btnNewButton.setBounds(10, 464, 123, 52);
+		add(btnNewButton);
 
 	}
-
 }

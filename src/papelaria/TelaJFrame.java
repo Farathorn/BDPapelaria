@@ -34,6 +34,9 @@ import java.awt.GridLayout;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.SwingConstants;
+import java.awt.ComponentOrientation;
+import net.miginfocom.swing.MigLayout;
 
 
 public class TelaJFrame extends JFrame {
@@ -78,6 +81,7 @@ public class TelaJFrame extends JFrame {
 	public TelaJFrame () {
 		setTitle("Papel & Art");
 
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1016, 861);
 		
@@ -97,15 +101,6 @@ public class TelaJFrame extends JFrame {
 				System.exit(0);
 			}
 		});
-		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("New menu item");
-		mntmNewMenuItem_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-			}
-		});
-		mnNewMenu.add(mntmNewMenuItem_1);
 		mntmNewMenuItem.setBorder(null);
 		mntmNewMenuItem.setPreferredSize(new Dimension(60, 26));
 		mnNewMenu.add(mntmNewMenuItem);
@@ -217,21 +212,15 @@ public class TelaJFrame extends JFrame {
 		contentPane.setLayout(new CardLayout(0, 0));
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(null);
 		contentPane.add(panel, "name_158698346478000");
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{70, 897, 0};
-		gbl_panel.rowHeights = new int[]{222, 105, 0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panel.setLayout(gbl_panel);
+		panel.setLayout(new CardLayout(0, 0));
 		
 		JLabel lblNewLabel = new JLabel("Banco de dados da papelaria Papel & Art");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 46));
 		lblNewLabel.setToolTipText("Utilize o menu acima para acessar o banco de dados.");
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.fill = GridBagConstraints.BOTH;
-		gbc_lblNewLabel.gridx = 1;
-		gbc_lblNewLabel.gridy = 4;
-		panel.add(lblNewLabel, gbc_lblNewLabel);
+		panel.add(lblNewLabel, "name_35547163537700");
 	}
 }

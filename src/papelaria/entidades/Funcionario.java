@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Funcionario implements EntidadeForte{
 	
-	private String descriptor = "Funcionário";
+	public static String descriptor = "Funcionário";
+	public static int attributeCount = 10;
 	
 	public String getDescriptor () {
 		
@@ -31,6 +32,7 @@ public class Funcionario implements EntidadeForte{
 			faltas = Integer.parseInt(set.get(6));
 			vendasDoMes = Double.parseDouble(set.get(7));
 			ticketMedio = Double.parseDouble(set.get(8));
+			franquia = new Franquia();
 			franquia.setCodigo(set.get(9));
 		}
 		
@@ -38,7 +40,25 @@ public class Funcionario implements EntidadeForte{
 	
 	public int getAttributeCount () {
 		
-		return 10;
+		return attributeCount;
+	}
+	
+	public String[] getAttributes () {
+		
+		String[] atributos = new String[getAttributeCount()];
+		
+		atributos[0] = cpf;
+		atributos[1] = nome;
+		atributos[2] = carteiraDeTrabalho;
+		atributos[3] = cargo;
+		atributos[4] = expediente;
+		atributos[5] = Double.toString(salarioBase);
+		atributos[6] = Integer.toString(faltas);
+		atributos[7] = Double.toString(vendasDoMes);
+		atributos[8] = Double.toString(ticketMedio);
+		atributos[9] = franquia.getCodigo();
+		
+		return atributos;
 	}
 
 	private String cpf;
