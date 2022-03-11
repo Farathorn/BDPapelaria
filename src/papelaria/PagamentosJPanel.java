@@ -1,10 +1,12 @@
 package papelaria;
 
 import javax.swing.JPanel;
-import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class PagamentosJPanel extends JPanel {
@@ -19,6 +21,18 @@ public class PagamentosJPanel extends JPanel {
 		setLayout(null);
 		
 		JButton btnAdicionar = new JButton("Adicionar");
+
+		btnAdicionar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+				AdicionarCustoPagamentosJFrame adicionar = new AdicionarCustoPagamentosJFrame();
+                adicionar.requestFocus();
+                adicionar.setLocationRelativeTo(table);
+                adicionar.setLocation(300, 300);
+                adicionar.setVisible(true);
+            }
+        });
+		
 		btnAdicionar.setBounds(10, 244, 111, 83);
 		add(btnAdicionar);
 		
