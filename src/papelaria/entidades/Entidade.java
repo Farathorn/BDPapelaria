@@ -14,7 +14,11 @@ public interface Entidade {
 	public void setAttributes (ArrayList <String> set);
 	
 	//Retorna quantos atributos a entidade possui
+<<<<<<< HEAD
 	public int getAttributeCount();
+=======
+	public int getAttributeCount ();
+>>>>>>> origin/Erik
 	
 	//Retorna os valores dos atributos sequencialmente em um array de Strings
 	public String[] getAttributes ();

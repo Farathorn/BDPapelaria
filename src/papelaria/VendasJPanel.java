@@ -1,5 +1,9 @@
 package papelaria;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
@@ -107,6 +111,10 @@ public class VendasJPanel extends JPanel {
 		scrollPane.setViewportView(table);
 		
 		JButton btnAdicionar = new JButton("Adicionar");
+<<<<<<< HEAD
+=======
+		
+>>>>>>> origin/Erik
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -127,7 +135,11 @@ public class VendasJPanel extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//Qual venda foi selecionada ainda não está implementado
+<<<<<<< HEAD
+				//Qual venda foi selecionada ainda nï¿½o estï¿½ implementado
+=======
+				//Qual venda foi selecionada ainda nï¿½o estï¿½ implementado
+>>>>>>> origin/Erik
 				ComprasJFrame itens = new ComprasJFrame();
 				itens.setTitle("Itens da venda " + "");
 				itens.setVisible(true);

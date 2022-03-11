@@ -45,6 +45,17 @@ public class CustoDireto extends Custo {
 		return atributos;
 	}
 	
+	public String[] getAttributes () {
+		
+		String[] atributos = new String[getAttributeCount()];
+		
+		atributos[0] = Double.toString(getValor());
+		atributos[1] = getDescricao();
+		atributos[2] = shopping.getCodigo();
+		
+		return atributos;
+	}
+	
 	private Shopping shopping;
 	
 	public Shopping getShopping () {

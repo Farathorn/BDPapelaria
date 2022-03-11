@@ -47,6 +47,18 @@ public class CustoIndireto extends Custo {
 		return atributos;
 	}
 	
+	public String[] getAttributes () {
+		
+		String[] atributos = new String[getAttributeCount()];
+		
+		atributos[0] = Double.toString(getValor());
+		atributos[1] = getDescricao();
+		atributos[2] = fornecedor.getCodigo();
+		atributos[3] = estoque.getCodigo();
+		
+		return atributos;
+	}
+	
 	private Fornecedor fornecedor;
 	private Estoque estoque;
 	

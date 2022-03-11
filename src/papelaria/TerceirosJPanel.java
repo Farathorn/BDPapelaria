@@ -1,6 +1,5 @@
 package papelaria;
 
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -19,13 +18,16 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Panel;
 import java.util.Arrays;
+import java.awt.Dimension;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JButton;
-import java.awt.Dimension;
-import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class TerceirosJPanel extends JPanel {
@@ -179,7 +181,7 @@ public class TerceirosJPanel extends JPanel {
 				{null, null, null},
 			},
 			new String[] {
-				"C\u00F3digo", "Contato", "Endere\u00E7o"
+				"Código", "Contato", "Endereço"
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
@@ -205,11 +207,22 @@ public class TerceirosJPanel extends JPanel {
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
 		JButton btnAdicionar_1 = new JButton("Adicionar");
-		btnAdicionar_1.setPreferredSize(new Dimension(77, 130));
+
+		btnAdicionar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				AdicionarTerceiroEstoqueJFrame adicionar = new AdicionarTerceiroEstoqueJFrame();
+				adicionar.setLocationRelativeTo(table);
+				adicionar.setLocation(300, 300);
+				adicionar.setVisible(true);
+			}
+		});
+
+		btnAdicionar_1.setPreferredSize(new Dimension(40, 100));
 		panel_3.add(btnAdicionar_1, BorderLayout.CENTER);
 		
 		JButton btnRemover_1 = new JButton("Remover");
-		btnRemover_1.setPreferredSize(new Dimension(75, 130));
+		btnRemover_1.setPreferredSize(new Dimension(100, 40));
 		panel_3.add(btnRemover_1, BorderLayout.SOUTH);
 		
 		Panel panel_1 = new Panel();
@@ -244,7 +257,7 @@ public class TerceirosJPanel extends JPanel {
 				{null, null, null, null},
 			},
 			new String[] {
-				"C\u00F3digo", "Nome", "Endere\u00E7o", "Aluguel"
+				"Código", "Nome", "Endereço", "Aluguel"
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
@@ -270,6 +283,17 @@ public class TerceirosJPanel extends JPanel {
 		panel_5.setLayout(new BorderLayout(0, 0));
 		
 		JButton btnAdicionar = new JButton("Adicionar");
+
+		btnAdicionar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+				AdicionarTerceiroShoppingJFrame adicionar = new AdicionarTerceiroShoppingJFrame();
+                adicionar.requestFocus();
+                adicionar.setLocationRelativeTo(table);
+                adicionar.setLocation(300, 300);
+                adicionar.setVisible(true);
+            }
+        });
 		btnAdicionar.setPreferredSize(new Dimension(77, 130));
 		panel_5.add(btnAdicionar, BorderLayout.CENTER);
 		
@@ -309,7 +333,7 @@ public class TerceirosJPanel extends JPanel {
 				{null, null, null},
 			},
 			new String[] {
-				"C\u00F3digo", "Contato", "Endere\u00E7o"
+				"Código", "Contato", "Endereço"
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
@@ -335,6 +359,16 @@ public class TerceirosJPanel extends JPanel {
 		panel_4.setLayout(new BorderLayout(0, 0));
 		
 		JButton btnAdicionar_2 = new JButton("Adicionar");
+
+		btnAdicionar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				AdicionarTerceiroEstoqueJFrame adicionar = new AdicionarTerceiroEstoqueJFrame();
+				adicionar.setLocationRelativeTo(table);
+				adicionar.setLocation(300, 300);
+				adicionar.setVisible(true);
+			}
+		});
 		btnAdicionar_2.setMaximumSize(new Dimension(77, 130));
 		btnAdicionar_2.setPreferredSize(new Dimension(77, 130));
 		panel_4.add(btnAdicionar_2, BorderLayout.CENTER);
