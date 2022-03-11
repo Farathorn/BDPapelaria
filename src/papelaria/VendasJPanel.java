@@ -107,6 +107,15 @@ public class VendasJPanel extends JPanel {
 		scrollPane.setViewportView(table);
 		
 		JButton btnAdicionar = new JButton("Adicionar");
+		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				AdicionarVendaJFrame adicionar = new AdicionarVendaJFrame();
+				adicionar.setLocationRelativeTo(table);
+				adicionar.setLocation(300, 300);
+				adicionar.setVisible(true);
+			}
+		});
 		btnAdicionar.setBounds(10, 300, 123, 52);
 		add(btnAdicionar);
 		

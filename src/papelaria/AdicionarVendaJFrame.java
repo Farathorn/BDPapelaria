@@ -30,7 +30,6 @@ public class AdicionarVendaJFrame extends JFrame {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
-	private JTextField textField_8;
 
 	/**
 	 * Create the frame.
@@ -41,7 +40,7 @@ public class AdicionarVendaJFrame extends JFrame {
 		setResizable(false);
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 650, 368);
+		setBounds(100, 100, 650, 345);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -65,7 +64,7 @@ public class AdicionarVendaJFrame extends JFrame {
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Carteira de Trabalho:");
+		JLabel lblNewLabel_1 = new JLabel("Valor:");
 		lblNewLabel_1.setBounds(30, 78, 125, 14);
 		panel.add(lblNewLabel_1);
 		
@@ -74,7 +73,7 @@ public class AdicionarVendaJFrame extends JFrame {
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Expediente:");
+		JLabel lblNewLabel_2 = new JLabel("Pagamento:");
 		lblNewLabel_2.setBounds(30, 109, 66, 14);
 		panel.add(lblNewLabel_2);
 		
@@ -92,8 +91,8 @@ public class AdicionarVendaJFrame extends JFrame {
 		panel.add(textField_4);
 		textField_4.setColumns(10);
 		
-		JLabel lblNewLabel_4 = new JLabel("Sal\u00E1rio:");
-		lblNewLabel_4.setBounds(30, 140, 46, 14);
+		JLabel lblNewLabel_4 = new JLabel("Parcelamento:");
+		lblNewLabel_4.setBounds(30, 140, 120, 14);
 		panel.add(lblNewLabel_4);
 		
 		textField_5 = new JTextField();
@@ -101,8 +100,8 @@ public class AdicionarVendaJFrame extends JFrame {
 		panel.add(textField_5);
 		textField_5.setColumns(10);
 		
-		JLabel lblNewLabel_5 = new JLabel("Faltas:");
-		lblNewLabel_5.setBounds(30, 171, 46, 14);
+		JLabel lblNewLabel_5 = new JLabel("Funcion\u00E1rio:");
+		lblNewLabel_5.setBounds(30, 171, 110, 14);
 		panel.add(lblNewLabel_5);
 		
 		textField_6 = new JTextField();
@@ -110,8 +109,8 @@ public class AdicionarVendaJFrame extends JFrame {
 		panel.add(textField_6);
 		textField_6.setColumns(10);
 		
-		JLabel lblNewLabel_6 = new JLabel("Vendas:");
-		lblNewLabel_6.setBounds(30, 202, 46, 14);
+		JLabel lblNewLabel_6 = new JLabel("Cliente:");
+		lblNewLabel_6.setBounds(30, 202, 110, 14);
 		panel.add(lblNewLabel_6);
 		
 		textField_7 = new JTextField();
@@ -119,18 +118,9 @@ public class AdicionarVendaJFrame extends JFrame {
 		panel.add(textField_7);
 		textField_7.setColumns(10);
 		
-		JLabel lblNewLabel_7 = new JLabel("Ticket M\u00E9dio:");
+		JLabel lblNewLabel_7 = new JLabel("Franquia:");
 		lblNewLabel_7.setBounds(30, 233, 110, 14);
 		panel.add(lblNewLabel_7);
-		
-		textField_8 = new JTextField();
-		textField_8.setBounds(160, 261, 86, 20);
-		panel.add(textField_8);
-		textField_8.setColumns(10);
-		
-		JLabel lblNewLabel_8 = new JLabel("Franquia:");
-		lblNewLabel_8.setBounds(30, 264, 66, 14);
-		panel.add(lblNewLabel_8);
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.SOUTH);

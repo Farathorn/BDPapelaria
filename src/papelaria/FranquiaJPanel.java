@@ -150,7 +150,6 @@ public class FranquiaJPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				AdicionarFranquiaJFrame adicionar = new AdicionarFranquiaJFrame();
-				adicionar.requestFocus();
 				adicionar.setLocationRelativeTo(table);
 				adicionar.setLocation(300, 300);
 				adicionar.setVisible(true);
