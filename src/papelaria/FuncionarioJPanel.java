@@ -148,6 +148,7 @@ public class FuncionarioJPanel extends JPanel {
 		preencherTable();
 		
 		JButton btnAdicionar = new JButton("Adicionar");
+		
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

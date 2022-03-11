@@ -1,42 +1,23 @@
 package papelaria;
 
-import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.GridBagConstraints;
+import java.awt.Font;
+import java.awt.Insets;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JMenu;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import java.awt.Dimension;
-import java.awt.Color;
-import java.awt.Insets;
-import java.awt.Component;
-import java.awt.SystemColor;
-import java.awt.Rectangle;
-import java.awt.CardLayout;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.GridBagLayout;
-import javax.swing.BoxLayout;
-import java.awt.GridLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import java.awt.ComponentOrientation;
-import net.miginfocom.swing.MigLayout;
+import javax.swing.border.EmptyBorder;
 
 
 public class TelaJFrame extends JFrame {
@@ -74,10 +55,6 @@ public class TelaJFrame extends JFrame {
 		contentPane.add(comp);
 		clearContentPane();
 	}
-
-	/**
-	 * Create the frame.
-	 */
 	public TelaJFrame () {
 		setTitle("Papel & Art");
 
@@ -127,7 +104,7 @@ public class TelaJFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				switchPane(new FuncionarioJPanel ());
-				setTitle("Papel & Art - Funcion·rio");
+				setTitle("Papel & Art - Funcion√°rio");
 			}
 		});
 		mntmMenuItem_2.setMargin(new Insets(0, 0, 0, 0));
