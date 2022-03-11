@@ -6,9 +6,51 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import papelaria.dao.TabelaDAO;
+import papelaria.entidades.CustoDireto;
+import papelaria.entidades.CustoIndireto;
+import papelaria.entidades.Entidade;
+
 
 public class CustosIndiretosJPanel extends JPanel {
 	private JTable table;
+	TabelaDAO dao = DAOFactory.createDAO();
+
+	private void preencherTable () {
+		
+		Entidade[] filtro = dao.listar(new CustoIndireto());
+		Entidade[] lista;
+		if (filtro == null) {
+			
+			table.setModel(new DefaultTableModel(null, new String[] {
+					"Valor", "Descri\u00E7\u00E3o", "Fornecedor", "Estoque"
+			}));
+		}
+		else {
+			
+			lista = filtro;
+			
+			String[][] tabela = new String[lista.length][new CustoIndireto().getAttributeCount()];
+			
+			if (lista.length > 0) {
+				
+				for (int i = 0; i < lista.length; i ++) {
+					
+					tabela[i] = lista[i].getAttributes();
+				}
+				
+				DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+				for (int i = 0; i < table.getRowCount(); i ++) {
+					
+					dtm.removeRow(i);
+				}
+				
+				table.setModel(new DefaultTableModel(tabela, new String[] {
+						"Valor", "Descri\u00E7\u00E3o", "Fornecedor", "Estoque"
+				}));
+			}
+		}
+	}
 
 	/**
 	 * Create the panel.
@@ -107,5 +149,7 @@ public class CustosIndiretosJPanel extends JPanel {
 			}
 		});
 		scrollPane.setViewportView(table);
+		
+		preencherTable();
 	}
 }

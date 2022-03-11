@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class CustoDireto extends Custo {
 
-	private String descriptor = "CustoDireto";
+	public static String descriptor = "Custo_Direto";
+	public static int attributeCount = 3;
 	
 	public String getDescriptor () {
 		
@@ -30,7 +31,18 @@ public class CustoDireto extends Custo {
 	
 	public int getAttributeCount () {
 		
-		return 3;
+		return attributeCount;
+	}
+	
+	public String[] getAttributes () {
+		
+		String[] atributos = new String[getAttributeCount()];
+		
+		atributos[0] = Double.toString(getValor());
+		atributos[1] = getDescricao();
+		atributos[2] = shopping.getCodigo();
+		
+		return atributos;
 	}
 	
 	private Shopping shopping;

@@ -1,8 +1,6 @@
 package papelaria.dao;
 
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.SQLTimeoutException;
+import java.util.ArrayList;
 import java.util.List;
 
 import papelaria.entidades.Entidade;
@@ -18,5 +16,5 @@ public interface TabelaDAO {
 	
 	public int deletar (EntidadeForte t);
 	
-	public List <Entidade> listar (Entidade t);
+	public Entidade[] listar (Entidade t);
 }
