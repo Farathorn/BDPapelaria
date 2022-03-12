@@ -6,11 +6,20 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import net.miginfocom.swing.MigLayout;
+import papelaria.dao.TabelaDAO;
+import papelaria.entidades.Entidade;
+import papelaria.entidades.Estoque;
+import papelaria.entidades.Fornecedor;
+import papelaria.entidades.Funcionario;
+import papelaria.entidades.Shopping;
+
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Panel;
+import java.util.Arrays;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
@@ -20,9 +29,115 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class TerceirosJPanel extends JPanel {
-	private JTable table_1;
-	private JTable table_2;
-	private JTable table;
+	private JTable fornecedorTable;
+	private JTable shoppingTable;
+	private JTable estoqueTable;
+	TabelaDAO dao = DAOFactory.createDAO();
+
+	private void preencherTableEstoque () {
+		
+		Entidade[] filtro = dao.listar(new Estoque());
+		Entidade[] lista;
+		if (filtro == null) {
+			
+			estoqueTable.setModel(new DefaultTableModel(null, new String[] {
+					"C\u00F3digo", "Contato", "Endere\u00E7o"
+			}));
+		}
+		else {
+			
+			lista = filtro;
+			String[][] tabela = new String[lista.length][new Estoque().getAttributeCount()];
+			
+			if (lista.length > 0) {
+				
+				for (int i = 0; i < lista.length; i ++) {
+					
+					tabela[i] = lista[i].getAttributes();
+				}
+				
+				DefaultTableModel dtm = (DefaultTableModel) estoqueTable.getModel();
+				for (int i = 0; i < estoqueTable.getRowCount(); i ++) {
+					
+					dtm.removeRow(i);
+				}
+				
+				estoqueTable.setModel(new DefaultTableModel(tabela, new String[] {
+						"C\u00F3digo", "Contato", "Endere\u00E7o"
+				}));
+			}
+		}
+	}
+
+	private void preencherTableFornecedor () {
+		
+		Entidade[] filtro = dao.listar(new Fornecedor());
+		Entidade[] lista;
+		if (filtro == null) {
+			
+			fornecedorTable.setModel(new DefaultTableModel(null, new String[] {
+					"C\u00F3digo", "Contato", "Endere\u00E7o"
+			}));
+		}
+		else {
+			
+			lista = filtro;
+			String[][] tabela = new String[lista.length][new Fornecedor().getAttributeCount()];
+			
+			if (lista.length > 0) {
+				
+				for (int i = 0; i < lista.length; i ++) {
+					
+					tabela[i] = lista[i].getAttributes();
+				}
+				
+				DefaultTableModel dtm = (DefaultTableModel) fornecedorTable.getModel();
+				for (int i = 0; i < fornecedorTable.getRowCount(); i ++) {
+					
+					dtm.removeRow(i);
+				}
+				
+				fornecedorTable.setModel(new DefaultTableModel(tabela, new String[] {
+						"C\u00F3digo", "Contato", "Endere\u00E7o"
+				}));
+			}
+		}		
+	}
+
+	private void preencherTableShopping () {
+		
+		Entidade[] filtro = dao.listar(new Shopping());
+		Entidade[] lista;
+		if (filtro == null) {
+			
+			shoppingTable.setModel(new DefaultTableModel(null, new String[] {
+					"C\u00F3digo", "Nome", "Endere\u00E7o", "Aluguel"
+			}));
+		}
+		else {
+			
+			lista = filtro;
+			String[][] tabela = new String[lista.length][new Shopping().getAttributeCount()];
+			
+			if (lista.length > 0) {
+				
+				for (int i = 0; i < lista.length; i ++) {
+					
+					tabela[i] = lista[i].getAttributes();
+				}
+				
+				DefaultTableModel dtm = (DefaultTableModel) shoppingTable.getModel();
+				for (int i = 0; i < shoppingTable.getRowCount(); i ++) {
+					
+					dtm.removeRow(i);
+				}
+				
+				shoppingTable.setModel(new DefaultTableModel(tabela, new String[] {
+						"C\u00F3digo", "Nome", "Endere\u00E7o", "Aluguel"
+				}));
+			}
+		}
+	}
 
 	/**
 	 * Create the panel.
@@ -39,8 +154,8 @@ public class TerceirosJPanel extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		panel.add(scrollPane);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
+		estoqueTable = new JTable();
+		estoqueTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
 				{null, null, null},
@@ -74,8 +189,10 @@ public class TerceirosJPanel extends JPanel {
 				return columnEditables[column];
 			}
 		});
-		table.setPreferredScrollableViewportSize(new Dimension(600, 200));
-		scrollPane.setViewportView(table);
+		estoqueTable.setPreferredScrollableViewportSize(new Dimension(600, 200));
+		scrollPane.setViewportView(estoqueTable);
+		
+		preencherTableEstoque();
 		
 		Panel panel_8 = new Panel();
 		panel.add(panel_8, BorderLayout.NORTH);
@@ -102,8 +219,8 @@ public class TerceirosJPanel extends JPanel {
 		JScrollPane scrollPane_3 = new JScrollPane();
 		panel_1.add(scrollPane_3);
 		
-		table_2 = new JTable();
-		table_2.setModel(new DefaultTableModel(
+		shoppingTable = new JTable();
+		shoppingTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null},
 				{null, null, null, null},
@@ -137,8 +254,10 @@ public class TerceirosJPanel extends JPanel {
 				return columnEditables[column];
 			}
 		});
-		table_2.setPreferredScrollableViewportSize(new Dimension(600, 200));
-		scrollPane_3.setViewportView(table_2);
+		shoppingTable.setPreferredScrollableViewportSize(new Dimension(600, 200));
+		scrollPane_3.setViewportView(shoppingTable);
+		
+		preencherTableShopping();
 		
 		Panel panel_7 = new Panel();
 		panel_1.add(panel_7, BorderLayout.NORTH);
@@ -165,8 +284,8 @@ public class TerceirosJPanel extends JPanel {
 		JScrollPane scrollPane_2 = new JScrollPane();
 		panel_2.add(scrollPane_2);
 		
-		table_1 = new JTable();
-		table_1.setModel(new DefaultTableModel(
+		fornecedorTable = new JTable();
+		fornecedorTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
 				{null, null, null},
@@ -200,8 +319,10 @@ public class TerceirosJPanel extends JPanel {
 				return columnEditables[column];
 			}
 		});
-		table_1.setPreferredScrollableViewportSize(new Dimension(600, 200));
-		scrollPane_2.setViewportView(table_1);
+		fornecedorTable.setPreferredScrollableViewportSize(new Dimension(600, 200));
+		scrollPane_2.setViewportView(fornecedorTable);
+		
+		preencherTableFornecedor();
 		
 		Panel panel_6 = new Panel();
 		panel_2.add(panel_6, BorderLayout.NORTH);
