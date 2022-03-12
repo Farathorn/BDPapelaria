@@ -9,9 +9,50 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import papelaria.dao.TabelaDAO;
+import papelaria.entidades.Entidade;
+import papelaria.entidades.Produto;
+import papelaria.entidades.Venda;
+
 
 public class VendasJPanel extends JPanel {
 	private JTable table;
+	TabelaDAO dao = DAOFactory.createDAO();
+
+	private void preencherTable () {
+		
+		Entidade[] filtro = dao.listar(new Venda());
+		Entidade[] lista;
+		if (filtro == null) {
+			
+			table.setModel(new DefaultTableModel(null, new String[] {
+					"C\u00F3digo", "Tipo", "Valor", "Forma de Pagamento", "Parcelamento", "Funcion\u00E1rio", "Cliente", "Franquia"
+			}));
+		}
+		else {
+			
+			lista = filtro;
+			String[][] tabela = new String[lista.length][new Venda().getAttributeCount()];
+			
+			if (lista.length > 0) {
+				
+				for (int i = 0; i < lista.length; i ++) {
+					
+					tabela[i] = lista[i].getAttributes();
+				}
+				
+				DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+				for (int i = 0; i < table.getRowCount(); i ++) {
+					
+					dtm.removeRow(i);
+				}
+				
+				table.setModel(new DefaultTableModel(tabela, new String[] {
+						"C\u00F3digo", "Tipo", "Valor", "Forma de Pagamento", "Parcelamento", "Funcion\u00E1rio", "Cliente", "Franquia"
+				}));
+			}
+		}
+	}
 
 	/**
 	 * Create the panel.
@@ -102,6 +143,8 @@ public class VendasJPanel extends JPanel {
 			}
 		});
 		scrollPane.setViewportView(table);
+		
+		preencherTable();
 		
 		JButton btnAdicionar = new JButton("Adicionar");
 		
