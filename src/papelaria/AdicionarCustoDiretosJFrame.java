@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 
-public class AdicionarFranquiaJFrame extends JFrame {
+public class AdicionarCustoDiretosJFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -22,7 +22,7 @@ public class AdicionarFranquiaJFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdicionarFranquiaJFrame () {
+	public AdicionarCustoDiretosJFrame () {
 		setType(Type.POPUP);
 		setAlwaysOnTop(true);
 		setResizable(false);
@@ -43,8 +43,8 @@ public class AdicionarFranquiaJFrame extends JFrame {
 		panel.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("Código:");
-		lblNewLabel.setBounds(30, 14, 80, 14);
+		JLabel lblNewLabel = new JLabel("Valor:");
+		lblNewLabel.setBounds(30, 14, 100, 14);
 		panel.add(lblNewLabel);
 		
 		textField_1 = new JTextField();
@@ -52,17 +52,17 @@ public class AdicionarFranquiaJFrame extends JFrame {
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Endereço:");
-		lblNewLabel_1.setBounds(30, 45, 80, 14);
+		JLabel lblNewLabel_1 = new JLabel("Descrição:");
+		lblNewLabel_1.setBounds(30, 45, 100, 14);
 		panel.add(lblNewLabel_1);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(96, 73, 120, 20);
+		textField_2.setBounds(96, 73, 300, 20);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Cofre:");
-		lblNewLabel_2.setBounds(30, 76, 80, 14);
+		JLabel lblNewLabel_2 = new JLabel("Shopping:");
+		lblNewLabel_2.setBounds(30, 76, 100, 14);
 		panel.add(lblNewLabel_2);
 		
 		JPanel panel_1 = new JPanel();

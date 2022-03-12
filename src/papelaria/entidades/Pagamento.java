@@ -2,7 +2,7 @@ package papelaria.entidades;
 
 import java.util.ArrayList;
 
-public class Pagamento extends Custo {
+public class Pagamento extends Custo implements Entidade {
 	
 	public static String descriptor = "Pagamento";
 	public static int attributeCount = 4;
@@ -14,7 +14,7 @@ public class Pagamento extends Custo {
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"Valor", "Descrição", "Tipo", "Funcionário"};
+		String[] lista = {"Valor", "Descri\u00E7\u00C3o", "Tipo", "Funcionário"};
 		
 		return lista;
 	}
@@ -47,9 +47,19 @@ public class Pagamento extends Custo {
 		
 		return atributos;
 	}
+	
+	public void linkEntities (ArrayList <Entidade> entities) {
+		
+		funcionario = (Funcionario) entities.get(0);
+	}
+	
+	public EntidadeForte[] getEntidades () {
+		
+		return new EntidadeForte[] {funcionario};
+	}
 
 	private String tipo;
-	private Funcionario funcionario = new Funcionario();
+	private Funcionario funcionario;
 	
 	public String getTipo () {
 	

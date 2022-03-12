@@ -6,6 +6,7 @@ public class Franquia implements EntidadeForte {
 	
 	public static String descriptor = "Franquia";
 	public static int attributeCount = 3;
+	public static int entityCount = 0;
 	
 	public String getDescriptor () {
 		
@@ -14,7 +15,7 @@ public class Franquia implements EntidadeForte {
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"Código", "Endereço", "Cofre"};
+		String[] lista = {"C\u00F3digo", "Endereço", "Cofre"};
 		
 		return lista;
 	}
@@ -43,6 +44,20 @@ public class Franquia implements EntidadeForte {
 		atributos[2] = Double.toString(cofre);
 		
 		return atributos;
+	}
+	
+	public void linkEntities (ArrayList <Entidade> entities) {
+		
+	}
+	
+	public int getEntityCount () {
+		
+		return entityCount;
+	}
+	
+	public EntidadeForte[] getEntidades () {
+	
+		return null;
 	}
 	
 	private String codigo;

@@ -6,6 +6,7 @@ public class Custo implements Entidade {
 	
 	public static String descriptor = "Custo";
 	public static int attributeCount = 2;
+	public static int entityCount = 0;
 	
 	public String getDescriptor () {
 		
@@ -41,6 +42,20 @@ public class Custo implements Entidade {
 		atributos[1] = descricao;
 		
 		return atributos;
+	}
+	
+	public void linkEntities (ArrayList <Entidade> entities) {
+		
+	}
+	
+	public int getEntityCount () {
+		
+		return entityCount;
+	}
+	
+	public EntidadeForte[] getEntidades () {
+	
+		return null;
 	}
 	
 	private double valor;
