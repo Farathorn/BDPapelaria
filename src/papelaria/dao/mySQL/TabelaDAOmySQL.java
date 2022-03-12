@@ -61,23 +61,23 @@ public class TabelaDAOmySQL implements TabelaDAO {
 		
 		if (abreConexao()) {
 			
-			String sql = "INSERT INTO " + entidade.getDescriptor() + " VALUES (";
+			String sql = "INSERT INTO " + entidade.getDescriptor() + " (";
 			
 			for (int i = 0; i < fields.length; i ++) {
 				
-				sql.concat(fields[i] + ", ");
+				sql = sql.concat(fields[i] + ", ");
 			}
 			
 			sql = sql.substring(0, sql.length() - 2);
-			sql.concat(")\n VALUES (");
+			sql = sql.concat(")\n VALUES (");
 			
 			for (int i = 0; i < fields.length; i ++) {
 				
-				sql.concat("\'" + values[i] + "\', ");
+				sql = sql.concat("\"" + values[i] + "\", ");
 			}
 			
 			sql = sql.substring(0, sql.length() - 2);		
-			sql.concat(");");
+			sql = sql.concat(");");
 			
 			try {
 				
