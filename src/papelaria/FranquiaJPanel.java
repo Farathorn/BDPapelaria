@@ -18,6 +18,7 @@ import papelaria.entidades.Franquia;
 
 
 public class FranquiaJPanel extends JPanel {
+	
 	private final class DefaultTableModelExtension extends DefaultTableModel {
 		Class[] columnTypes = new Class[] {
 			String.class, String.class, String.class
@@ -38,6 +39,7 @@ public class FranquiaJPanel extends JPanel {
 			return columnEditables[column];
 		}
 	}
+	
 	private JTable table;
 	TabelaDAO dao = DAOFactory.createDAO();
 	
@@ -75,6 +77,24 @@ public class FranquiaJPanel extends JPanel {
 			}
 		}
 		
+	}
+	
+	class AcaoAdicionarButton implements ActionListener {
+		
+		private JPanel caller;
+		
+		public AcaoAdicionarButton(JPanel caller) {
+			
+			this.caller = caller;
+		}
+		
+        public void actionPerformed(ActionEvent e) {
+
+        	AdicionarFranquiaJFrame adicionar = new AdicionarFranquiaJFrame(caller);
+        	adicionar.setLocationRelativeTo(table);
+			adicionar.setLocation(300, 300);
+			adicionar.setVisible(true);
+        }
 	}
 
 	public FranquiaJPanel () {
@@ -173,16 +193,7 @@ public class FranquiaJPanel extends JPanel {
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
 		JButton btnAdicionar = new JButton("Adicionar");
-		btnAdicionar.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				AdicionarFranquiaJFrame adicionar = new AdicionarFranquiaJFrame();
-				adicionar.setLocationRelativeTo(table);
-				adicionar.setLocation(300, 300);
-				adicionar.setVisible(true);
-			}
-		});
+		btnAdicionar.addActionListener(new AcaoAdicionarButton(this));
 		btnAdicionar.setPreferredSize(new Dimension(70, 120));
 		panel.add(btnAdicionar, "cell 0 12");
 		

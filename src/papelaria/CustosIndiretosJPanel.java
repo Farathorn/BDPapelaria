@@ -52,6 +52,25 @@ public class CustosIndiretosJPanel extends JPanel {
 			}
 		}
 	}
+	
+	class AcaoAdicionarButton implements ActionListener {
+		
+		private JPanel caller;
+		
+		public AcaoAdicionarButton(JPanel caller) {
+			
+			this.caller = caller;
+		}
+		
+        public void actionPerformed(ActionEvent e) {
+
+        	AdicionarCustoIndiretosJFrame adicionar = new AdicionarCustoIndiretosJFrame(caller);
+            adicionar.requestFocus();
+            adicionar.setLocationRelativeTo(table);
+            adicionar.setLocation(300, 300);
+            adicionar.setVisible(true);
+        }
+	}
 
 	/**
 	 * Create the panel.
@@ -63,16 +82,7 @@ public class CustosIndiretosJPanel extends JPanel {
 		
 		JButton btnAdicionar = new JButton("Adicionar");
 
-		btnAdicionar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
-				AdicionarCustoIndiretosJFrame adicionar = new AdicionarCustoIndiretosJFrame();
-                adicionar.requestFocus();
-                adicionar.setLocationRelativeTo(table);
-                adicionar.setLocation(300, 300);
-                adicionar.setVisible(true);
-            }
-        });
+		btnAdicionar.addActionListener(new AcaoAdicionarButton(this));
 		btnAdicionar.setBounds(10, 290, 123, 52);
 		add(btnAdicionar);
 		

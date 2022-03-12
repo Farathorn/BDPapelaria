@@ -52,6 +52,24 @@ public class VendasJPanel extends JPanel {
 			}
 		}
 	}
+	
+	class AcaoAdicionarVendaButton implements ActionListener {
+		
+		private JPanel caller;
+		
+		public AcaoAdicionarVendaButton(JPanel caller) {
+			
+			this.caller = caller;
+		}
+		
+        public void actionPerformed(ActionEvent e) {
+
+        	AdicionarTerceiroShoppingJFrame adicionar = new AdicionarTerceiroShoppingJFrame(caller);
+        	adicionar.setLocationRelativeTo(table);
+			adicionar.setLocation(300, 300);
+			adicionar.setVisible(true);
+        }
+	}
 
 	/**
 	 * Create the panel.
@@ -146,16 +164,7 @@ public class VendasJPanel extends JPanel {
 		preencherTable();
 		
 		JButton btnAdicionar = new JButton("Adicionar");
-		
-		btnAdicionar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				AdicionarVendaJFrame adicionar = new AdicionarVendaJFrame();
-				adicionar.setLocationRelativeTo(table);
-				adicionar.setLocation(300, 300);
-				adicionar.setVisible(true);
-			}
-		});
+		btnAdicionar.addActionListener(new AcaoAdicionarVendaButton(this));
 		btnAdicionar.setBounds(10, 300, 123, 52);
 		add(btnAdicionar);
 		

@@ -61,6 +61,60 @@ public class TerceirosJPanel extends JPanel {
 			}
 		}
 	}
+	
+	class AcaoAdicionarEstoqueButton implements ActionListener {
+		
+		private JPanel caller;
+		
+		public AcaoAdicionarEstoqueButton(JPanel caller) {
+			
+			this.caller = caller;
+		}
+		
+        public void actionPerformed(ActionEvent e) {
+
+        	AdicionarTerceiroEstoqueJFrame adicionar = new AdicionarTerceiroEstoqueJFrame(caller);
+        	adicionar.setLocationRelativeTo(estoqueTable);
+			adicionar.setLocation(300, 300);
+			adicionar.setVisible(true);
+        }
+	}
+	
+	class AcaoAdicionarFornecedorButton implements ActionListener {
+		
+		private JPanel caller;
+		
+		public AcaoAdicionarFornecedorButton(JPanel caller) {
+			
+			this.caller = caller;
+		}
+		
+        public void actionPerformed(ActionEvent e) {
+
+        	AdicionarTerceiroFornecedorJFrame adicionar = new AdicionarTerceiroFornecedorJFrame(caller);
+        	adicionar.setLocationRelativeTo(fornecedorTable);
+			adicionar.setLocation(300, 300);
+			adicionar.setVisible(true);
+        }
+	}
+	
+	class AcaoAdicionarShoppingButton implements ActionListener {
+		
+		private JPanel caller;
+		
+		public AcaoAdicionarShoppingButton(JPanel caller) {
+			
+			this.caller = caller;
+		}
+		
+        public void actionPerformed(ActionEvent e) {
+
+        	AdicionarTerceiroShoppingJFrame adicionar = new AdicionarTerceiroShoppingJFrame(caller);
+        	adicionar.setLocationRelativeTo(shoppingTable);
+			adicionar.setLocation(300, 300);
+			adicionar.setVisible(true);
+        }
+	}
 
 	private void preencherTableFornecedor () {
 		
@@ -198,16 +252,7 @@ public class TerceirosJPanel extends JPanel {
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
 		JButton btnAdicionar_1 = new JButton("Adicionar");
-
-		btnAdicionar_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				AdicionarTerceiroEstoqueJFrame adicionar = new AdicionarTerceiroEstoqueJFrame();
-				adicionar.setLocationRelativeTo(estoqueTable);
-				adicionar.setLocation(300, 300);
-				adicionar.setVisible(true);
-			}
-		});
+		btnAdicionar_1.addActionListener(new AcaoAdicionarEstoqueButton(this));
 
 		btnAdicionar_1.setPreferredSize(new Dimension(40, 100));
 		panel_3.add(btnAdicionar_1, BorderLayout.CENTER);
@@ -275,16 +320,7 @@ public class TerceirosJPanel extends JPanel {
 		
 		JButton btnAdicionar = new JButton("Adicionar");
 
-		btnAdicionar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
-				AdicionarTerceiroShoppingJFrame adicionar = new AdicionarTerceiroShoppingJFrame();
-                adicionar.requestFocus();
-                adicionar.setLocationRelativeTo(shoppingTable);
-                adicionar.setLocation(300, 300);
-                adicionar.setVisible(true);
-            }
-        });
+		btnAdicionar.addActionListener(new AcaoAdicionarShoppingButton(this));
 		btnAdicionar.setPreferredSize(new Dimension(77, 130));
 		panel_5.add(btnAdicionar, BorderLayout.CENTER);
 		
@@ -351,15 +387,7 @@ public class TerceirosJPanel extends JPanel {
 		
 		JButton btnAdicionar_2 = new JButton("Adicionar");
 
-		btnAdicionar_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				AdicionarTerceiroEstoqueJFrame adicionar = new AdicionarTerceiroEstoqueJFrame();
-				adicionar.setLocationRelativeTo(estoqueTable);
-				adicionar.setLocation(300, 300);
-				adicionar.setVisible(true);
-			}
-		});
+		btnAdicionar_1.addActionListener(new AcaoAdicionarFornecedorButton(this));
 		btnAdicionar_2.setMaximumSize(new Dimension(77, 130));
 		btnAdicionar_2.setPreferredSize(new Dimension(77, 130));
 		panel_4.add(btnAdicionar_2, BorderLayout.CENTER);

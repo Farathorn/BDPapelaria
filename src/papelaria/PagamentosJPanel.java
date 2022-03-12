@@ -52,6 +52,24 @@ public class PagamentosJPanel extends JPanel {
 			}
 		}
 	}
+	
+	class AcaoAdicionarButton implements ActionListener {
+		
+		private JPanel caller;
+		
+		public AcaoAdicionarButton(JPanel caller) {
+			
+			this.caller = caller;
+		}
+		
+        public void actionPerformed(ActionEvent e) {
+
+        	AdicionarCustoPagamentosJFrame adicionar = new AdicionarCustoPagamentosJFrame(caller);
+        	adicionar.setLocationRelativeTo(table);
+			adicionar.setLocation(300, 300);
+			adicionar.setVisible(true);
+        }
+	}
 
 	/**
 	 * Create the panel.
@@ -63,16 +81,7 @@ public class PagamentosJPanel extends JPanel {
 		
 		JButton btnAdicionar = new JButton("Adicionar");
 
-		btnAdicionar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
-				AdicionarCustoPagamentosJFrame adicionar = new AdicionarCustoPagamentosJFrame();
-                adicionar.requestFocus();
-                adicionar.setLocationRelativeTo(table);
-                adicionar.setLocation(300, 300);
-                adicionar.setVisible(true);
-            }
-        });
+		btnAdicionar.addActionListener(new AcaoAdicionarButton(this));
 		
 		btnAdicionar.setBounds(10, 244, 111, 83);
 		add(btnAdicionar);

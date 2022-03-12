@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -52,6 +53,25 @@ public class CustosDiretosJPanel extends JPanel {
 				}));
 			}
 		}
+	}
+	
+	class AcaoAdicionarButton implements ActionListener {
+		
+		private JPanel caller;
+		
+		public AcaoAdicionarButton(JPanel custosDiretosJPanel) {
+			
+			this.caller = custosDiretosJPanel;
+		}
+		
+        public void actionPerformed(ActionEvent e) {
+
+			AdicionarCustoDiretosJFrame adicionar = new AdicionarCustoDiretosJFrame(caller);
+            adicionar.requestFocus();
+            adicionar.setLocationRelativeTo(table);
+            adicionar.setLocation(300, 300);
+            adicionar.setVisible(true);
+        }
 	}
 	
 	/**
@@ -147,17 +167,7 @@ public class CustosDiretosJPanel extends JPanel {
 		preencherTable();
 		
 		JButton btnAdicionar = new JButton("Adicionar");
-
-		btnAdicionar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
-				AdicionarCustoDiretosJFrame adicionar = new AdicionarCustoDiretosJFrame();
-                adicionar.requestFocus();
-                adicionar.setLocationRelativeTo(table);
-                adicionar.setLocation(300, 300);
-                adicionar.setVisible(true);
-            }
-        });
+		btnAdicionar.addActionListener(new AcaoAdicionarButton(this));
 		btnAdicionar.setBounds(20, 293, 123, 52);
 		add(btnAdicionar);
 		

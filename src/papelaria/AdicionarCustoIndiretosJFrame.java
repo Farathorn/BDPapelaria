@@ -14,6 +14,8 @@ import javax.swing.border.EmptyBorder;
 
 public class AdicionarCustoIndiretosJFrame extends JFrame {
 
+	private JPanel caller;
+	
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -23,7 +25,10 @@ public class AdicionarCustoIndiretosJFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdicionarCustoIndiretosJFrame () {
+	public AdicionarCustoIndiretosJFrame (JPanel caller) {
+		
+		this.caller = caller;
+		
 		setType(Type.POPUP);
 		setAlwaysOnTop(true);
 		setResizable(false);

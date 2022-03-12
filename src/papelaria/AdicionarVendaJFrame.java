@@ -13,6 +13,8 @@ import javax.swing.border.EmptyBorder;
 
 
 public class AdicionarVendaJFrame extends JFrame {
+	
+	private JPanel caller;
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -27,7 +29,10 @@ public class AdicionarVendaJFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdicionarVendaJFrame () {
+	public AdicionarVendaJFrame (JPanel caller) {
+		
+		this.caller = caller;
+		
 		setType(Type.POPUP);
 		setAlwaysOnTop(true);
 		setResizable(false);
