@@ -10,34 +10,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import java.awt.SystemColor;
-import javax.swing.JTextPane;
-import java.awt.List;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.awt.event.ActionEvent;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.SwingConstants;
-import java.awt.BorderLayout;
-import javax.swing.BoxLayout;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
-import javax.swing.SpringLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormSpecs;
-import com.jgoodies.forms.layout.RowSpec;
+
 import net.miginfocom.swing.MigLayout;
 import papelaria.dao.TabelaDAO;
 import papelaria.entidades.Entidade;
 import papelaria.entidades.Franquia;
-import java.awt.Dimension;
 
 
 public class FranquiaJPanel extends JPanel {

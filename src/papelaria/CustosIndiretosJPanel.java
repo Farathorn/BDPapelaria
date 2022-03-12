@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import papelaria.dao.TabelaDAO;
-import papelaria.entidades.CustoDireto;
 import papelaria.entidades.CustoIndireto;
 import papelaria.entidades.Entidade;
 

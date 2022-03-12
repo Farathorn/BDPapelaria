@@ -11,7 +11,6 @@ import javax.swing.table.DefaultTableModel;
 
 import papelaria.dao.TabelaDAO;
 import papelaria.entidades.Entidade;
-import papelaria.entidades.Produto;
 import papelaria.entidades.Venda;
 
 
