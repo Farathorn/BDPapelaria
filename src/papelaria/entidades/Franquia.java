@@ -14,7 +14,7 @@ public class Franquia implements EntidadeForte {
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"Código", "Endereço", "Cofre"};
+		String[] lista = {"Cï¿½digo", "Endereï¿½o", "Cofre"};
 		
 		return lista;
 	}
@@ -32,17 +32,6 @@ public class Franquia implements EntidadeForte {
 	public int getAttributeCount () {
 		
 		return attributeCount;
-	}
-	
-	public String[] getAttributes () {
-		
-		String[] atributos = new String[getAttributeCount()];
-		
-		atributos[0] = codigo;
-		atributos[1] = endereco;
-		atributos[2] = Double.toString(cofre);
-		
-		return atributos;
 	}
 	
 	public String[] getAttributes () {

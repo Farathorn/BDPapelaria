@@ -49,7 +49,7 @@ public class Pagamento extends Custo {
 	}
 
 	private String tipo;
-	private Funcionario funcionario = new Funcionario();
+	private Funcionario funcionario;
 	
 	public String getTipo () {
 	

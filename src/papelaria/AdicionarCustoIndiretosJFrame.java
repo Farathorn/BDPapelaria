@@ -12,17 +12,18 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 
-public class AdicionarFranquiaJFrame extends JFrame {
+public class AdicionarCustoIndiretosJFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+    private JTextField textField_3;
 
 	/**
 	 * Create the frame.
 	 */
-	public AdicionarFranquiaJFrame () {
+	public AdicionarCustoIndiretosJFrame () {
 		setType(Type.POPUP);
 		setAlwaysOnTop(true);
 		setResizable(false);
@@ -43,17 +44,17 @@ public class AdicionarFranquiaJFrame extends JFrame {
 		panel.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("Código:");
-		lblNewLabel.setBounds(30, 14, 80, 14);
+		JLabel lblNewLabel = new JLabel("Valor:");
+		lblNewLabel.setBounds(30, 14, 46, 14);
 		panel.add(lblNewLabel);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(96, 42, 300, 20);
+		textField_1.setBounds(96, 42, 320, 20);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Endereço:");
-		lblNewLabel_1.setBounds(30, 45, 80, 14);
+		JLabel lblNewLabel_1 = new JLabel("Descrição:");
+		lblNewLabel_1.setBounds(30, 45, 56, 14);
 		panel.add(lblNewLabel_1);
 		
 		textField_2 = new JTextField();
@@ -61,9 +62,18 @@ public class AdicionarFranquiaJFrame extends JFrame {
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Cofre:");
-		lblNewLabel_2.setBounds(30, 76, 80, 14);
+		JLabel lblNewLabel_2 = new JLabel("Fornecedor:");
+		lblNewLabel_2.setBounds(30, 76, 46, 14);
 		panel.add(lblNewLabel_2);
+
+        textField_3 = new JTextField();
+		textField_3.setBounds(96, 104, 120, 20);
+		panel.add(textField_3);
+		textField_3.setColumns(10);
+		
+		JLabel lblNewLabel_3 = new JLabel("Estoque:");
+		lblNewLabel_3.setBounds(30, 107, 66, 14);
+		panel.add(lblNewLabel_3);
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.SOUTH);

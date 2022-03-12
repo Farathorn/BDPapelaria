@@ -14,7 +14,7 @@ public class Custo implements Entidade {
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"Valor", "Descrição"};
+		String[] lista = {"Valor", "Descriï¿½ï¿½o"};
 		
 		return lista;
 	}
@@ -31,16 +31,6 @@ public class Custo implements Entidade {
 	public int getAttributeCount () {
 		
 		return attributeCount;
-	}
-	
-	public String[] getAttributes () {
-		
-		String[] atributos = new String[getAttributeCount()];
-		
-		atributos[0] = Double.toString(valor);
-		atributos[1] = descricao;
-		
-		return atributos;
 	}
 	
 	public String[] getAttributes () {

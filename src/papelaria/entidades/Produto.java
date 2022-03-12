@@ -14,7 +14,7 @@ public class Produto implements EntidadeForte {
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"Código", "Quantidade", "Descrição", "Preço_Unitário", "Preço_Total", "Estoque"};
+		String[] lista = {"Cï¿½digo", "Quantidade", "Descriï¿½ï¿½o", "Preï¿½o_Unitï¿½rio", "Preï¿½o_Total", "Estoque"};
 		
 		return lista;
 	}
@@ -36,20 +36,6 @@ public class Produto implements EntidadeForte {
 	public int getAttributeCount () {
 		
 		return attributeCount;
-	}
-	
-	public String[] getAttributes () {
-		
-		String[] atributos = new String[getAttributeCount()];
-		
-		atributos[0] = codigo;
-		atributos[1] = Integer.toString(quantidade);
-		atributos[2] = descricao;
-		atributos[3] = Double.toString(quantidade);
-		atributos[4] = Double.toString(precoTotal);
-		atributos[5] = estoque.getCodigo();
-		
-		return atributos;
 	}
 	
 	public String[] getAttributes () {

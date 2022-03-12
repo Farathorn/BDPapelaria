@@ -14,7 +14,7 @@ public class Shopping implements EntidadeForte {
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"Código", "Nome", "Endereço", "Aluguel"};
+		String[] lista = {"Cï¿½digo", "Nome", "Endereï¿½o", "Aluguel"};
 		
 		return lista;
 	}
@@ -33,18 +33,6 @@ public class Shopping implements EntidadeForte {
 	public int getAttributeCount () {
 		
 		return attributeCount;
-	}
-	
-	public String[] getAttributes () {
-		
-		String[] atributos = new String[getAttributeCount()];
-		
-		atributos[0] = codigo;
-		atributos[1] = nome;
-		atributos[2] = endereco;
-		atributos[3] = Double.toString(aluguel);
-		
-		return atributos;
 	}
 	
 	public String[] getAttributes () {
