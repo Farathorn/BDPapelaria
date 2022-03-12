@@ -74,6 +74,18 @@ public class CustosDiretosJPanel extends JPanel {
         }
 	}
 	
+	public boolean adicionarLinha (Entidade entidade) {
+		
+		if (dao.adicionar(entidade, entidade.listAttributes(), entidade.getAttributes())) {
+			
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			model.addRow(entidade.getAttributes());
+			return true;
+		}
+		
+		return false;
+	}
+	
 	/**
 	 * Create the panel.
 	 */

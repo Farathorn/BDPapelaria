@@ -98,6 +98,42 @@ public class TerceirosJPanel extends JPanel {
         }
 	}
 	
+	public boolean adicionarLinhaEstoque (Entidade entidade) {
+		
+		if (dao.adicionar(entidade, entidade.listAttributes(), entidade.getAttributes())) {
+			
+			DefaultTableModel model = (DefaultTableModel) estoqueTable.getModel();
+			model.addRow(entidade.getAttributes());
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public boolean adicionarLinhaFornecedor (Entidade entidade) {
+		
+		if (dao.adicionar(entidade, entidade.listAttributes(), entidade.getAttributes())) {
+			
+			DefaultTableModel model = (DefaultTableModel) fornecedorTable.getModel();
+			model.addRow(entidade.getAttributes());
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public boolean adicionarLinhaShopping (Entidade entidade) {
+		
+		if (dao.adicionar(entidade, entidade.listAttributes(), entidade.getAttributes())) {
+			
+			DefaultTableModel model = (DefaultTableModel) shoppingTable.getModel();
+			model.addRow(entidade.getAttributes());
+			return true;
+		}
+		
+		return false;
+	}
+	
 	class AcaoAdicionarShoppingButton implements ActionListener {
 		
 		private JPanel caller;

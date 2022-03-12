@@ -53,6 +53,18 @@ public class ProdutosJPanel extends JPanel {
 		}
 	}
 	
+	public boolean adicionarLinha (Entidade entidade) {
+		
+		if (dao.adicionar(entidade, entidade.listAttributes(), entidade.getAttributes())) {
+			
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			model.addRow(entidade.getAttributes());
+			return true;
+		}
+		
+		return false;
+	}
+	
 	class AcaoAdicionarButton implements ActionListener {
 		
 		private JPanel caller;

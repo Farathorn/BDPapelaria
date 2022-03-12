@@ -1,7 +1,10 @@
 package papelaria;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -51,6 +54,18 @@ public class VendasJPanel extends JPanel {
 				}));
 			}
 		}
+	}
+	
+	public boolean adicionarLinha (Entidade entidade) {
+		
+		if (dao.adicionar(entidade, entidade.listAttributes(), entidade.getAttributes())) {
+			
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			model.addRow(entidade.getAttributes());
+			return true;
+		}
+		
+		return false;
 	}
 	
 	class AcaoAdicionarVendaButton implements ActionListener {

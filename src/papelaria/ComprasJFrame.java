@@ -8,6 +8,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import papelaria.dao.TabelaDAO;
+import papelaria.entidades.Entidade;
 import papelaria.entidades.ItemComprado;
 
 
@@ -49,6 +50,18 @@ public class ComprasJFrame extends JFrame {
 				}));
 			}
 		}
+	}
+	
+	public boolean adicionarLinha (Entidade entidade) {
+		
+		if (dao.adicionar(entidade, entidade.listAttributes(), entidade.getAttributes())) {
+			
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			model.addRow(entidade.getAttributes());
+			return true;
+		}
+		
+		return false;
 	}
 
 	/**
