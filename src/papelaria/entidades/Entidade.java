@@ -18,4 +18,11 @@ public interface Entidade {
 	
 	//Retorna os valores dos atributos sequencialmente em um array de Strings
 	public String[] getAttributes ();
+	
+	//Conecta as entidades pelo código
+	public void linkEntities (ArrayList <Entidade> entities);
+	
+	public int getEntityCount ();
+	
+	public EntidadeForte[] getEntidades ();
 }

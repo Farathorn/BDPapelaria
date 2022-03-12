@@ -6,6 +6,7 @@ public class Venda implements EntidadeForte {
 	
 	public static String descriptor = "Venda";
 	public static int attributeCount = 8;
+	public static int entityCount = 3;
 	
 	public String getDescriptor() {
 		
@@ -14,7 +15,7 @@ public class Venda implements EntidadeForte {
 	
 	public String[] listAttributes () {
 		
-		return new String[] {"Código", "Tipo", "Valor", "Forma_de_Pagamento", "Parcelamento", "Funcionário", "Cliente", "Franquia"};
+		return new String[] {"C\u00F3digo", "Tipo", "Valor", "Forma_de_Pagamento", "Parcelamento", "Funcion\u00E1rio", "Cliente", "Franquia"};
 	}
 	
 	public void setAttributes (ArrayList <String> set) {
@@ -54,6 +55,23 @@ public class Venda implements EntidadeForte {
 		atributos[7] = franquia.getCodigo();
 		
 		return atributos;
+	}
+	
+	public void linkEntities (ArrayList <Entidade> entities) {
+	
+		funcionario = (Funcionario) entities.get(0);
+		cliente = (Cliente) entities.get(1);
+		franquia = (Franquia) entities.get(2);
+	}
+	
+	public int getEntityCount () {
+		
+		return entityCount;
+	}
+	
+	public EntidadeForte[] getEntidades () {
+		
+		return new EntidadeForte[] {funcionario, cliente, franquia};
 	}
 	
 	private String codigo;

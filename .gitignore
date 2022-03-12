@@ -1,0 +1,11 @@
+bin/papelaria/entidades/Cliente.class
+bin/papelaria/entidades/Custo.class
+bin/papelaria/entidades/CustoDireto.class
+bin/papelaria/entidades/CustoIndireto.class
+bin/papelaria/entidades/Estoque.class
+bin/papelaria/entidades/Fornecedor.class
+bin/papelaria/entidades/Franquia.class
+bin/papelaria/entidades/Funcionario.class
+bin/papelaria/entidades/Pagamento.class
+bin/papelaria/entidades/Produto.class
+bin/papelaria/entidades/Shopping.class

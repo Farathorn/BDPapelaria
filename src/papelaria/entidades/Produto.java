@@ -6,6 +6,7 @@ public class Produto implements EntidadeForte {
 	
 	public static String descriptor = "Produto";
 	public static int attributeCount = 6;
+	public static int entityCount = 1;
 	
 	public String getDescriptor () {
 		
@@ -14,7 +15,7 @@ public class Produto implements EntidadeForte {
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"Cï¿½digo", "Quantidade", "Descriï¿½ï¿½o", "Preï¿½o_Unitï¿½rio", "Preï¿½o_Total", "Estoque"};
+		String[] lista = {"C\u00F3digo", "Quantidade", "Descri\u00E7\u00C3o", "Preço_Unit\u00E1rio", "Preço_Total", "Estoque"};
 		
 		return lista;
 	}
@@ -50,6 +51,21 @@ public class Produto implements EntidadeForte {
 		atributos[5] = estoque.getCodigo();
 		
 		return atributos;
+	}
+	
+	public void linkEntities (ArrayList <Entidade> entities) {
+		
+		estoque = (Estoque) entities.get(0);
+	}
+	
+	public int getEntityCount () {
+		
+		return entityCount;
+	}
+	
+	public EntidadeForte[] getEntidades () {
+		
+		return new EntidadeForte[] {estoque};
 	}
 
 	private String codigo;
