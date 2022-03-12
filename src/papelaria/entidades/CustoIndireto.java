@@ -2,7 +2,7 @@ package papelaria.entidades;
 
 import java.util.ArrayList;
 
-public class CustoIndireto extends Custo implements Entidade {
+public class CustoIndireto extends Custo {
 
 	public static String descriptor = "Custo_Indireto";
 	public static int attributeCount = 4;

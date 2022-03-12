@@ -8,8 +8,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import papelaria.dao.TabelaDAO;
-import papelaria.entidades.CustoIndireto;
-import papelaria.entidades.Entidade;
 import papelaria.entidades.ItemComprado;
 
 

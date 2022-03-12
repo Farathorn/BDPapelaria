@@ -1,8 +1,5 @@
 package papelaria.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import papelaria.entidades.Entidade;
 import papelaria.entidades.EntidadeForte;
 

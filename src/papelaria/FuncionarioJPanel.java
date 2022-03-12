@@ -1,5 +1,9 @@
 package papelaria;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -7,13 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 import papelaria.dao.TabelaDAO;
 import papelaria.entidades.Entidade;
-import papelaria.entidades.Franquia;
 import papelaria.entidades.Funcionario;
-
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.util.Arrays;
-import java.awt.event.ActionEvent;
 
 
 public class FuncionarioJPanel extends JPanel {

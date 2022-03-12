@@ -1,21 +1,17 @@
 package papelaria;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
-import java.util.Arrays;
-
-import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 import papelaria.dao.TabelaDAO;
 import papelaria.entidades.CustoDireto;
 import papelaria.entidades.Entidade;
-import papelaria.entidades.Funcionario;
 
 
 public class CustosDiretosJPanel extends JPanel {
