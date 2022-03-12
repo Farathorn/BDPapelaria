@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public class Funcionario implements EntidadeForte{
 	
-	private String descriptor = "Funcionário";
+	public static String descriptor = "Funcion\u00E1rio";
+	public static int attributeCount = 10;
+	public static int entityCount = 1;
 	
 	public String getDescriptor () {
 		
@@ -13,7 +15,7 @@ public class Funcionario implements EntidadeForte{
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"CPF", "Nome", "Carteira_de_Trabalho", "Cargo", "Expediente", "Salário_Base", "Faltas", "Venda_do_Mês", "Ticket_Médio", "Franquia"};
+		String[] lista = {"CPF", "Nome", "Carteira_de_Trabalho", "Cargo", "Expediente", "Sal\u00E1rio_Base", "Faltas", "Venda_do_M\u00EAs", "Ticket_M\u00E9dio", "Franquia"};
 		
 		return lista;
 	}
@@ -31,6 +33,7 @@ public class Funcionario implements EntidadeForte{
 			faltas = Integer.parseInt(set.get(6));
 			vendasDoMes = Double.parseDouble(set.get(7));
 			ticketMedio = Double.parseDouble(set.get(8));
+			franquia = new Franquia();
 			franquia.setCodigo(set.get(9));
 		}
 		
@@ -38,7 +41,7 @@ public class Funcionario implements EntidadeForte{
 	
 	public int getAttributeCount () {
 		
-		return 10;
+		return attributeCount;
 	}
 	
 	public String[] getAttributes () {
@@ -57,6 +60,21 @@ public class Funcionario implements EntidadeForte{
 		atributos[9] = franquia.getCodigo();
 		
 		return atributos;
+	}
+	
+	public void linkEntities (ArrayList <Entidade> entities) {
+		
+		franquia = (Franquia) entities.get(0);
+	}
+	
+	public int getEntityCount () {
+		
+		return entityCount;
+	}
+	
+	public EntidadeForte[] getEntidades () {
+		
+		return new EntidadeForte[] {franquia};
 	}
 
 	private String cpf;

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public class Fornecedor implements EntidadeForte{
 	
-	private String descriptor = "Fornecedor";
+	public static String descriptor = "Fornecedor";
+	public static int attributeCount = 3;
+	public static int entityCount = 0;
 	
 	public String getDescriptor () {
 		
@@ -13,7 +15,7 @@ public class Fornecedor implements EntidadeForte{
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"Código", "Contato", "Endereço"};
+		String[] lista = {"C\u00F3digo", "Contato", "Endereço"};
 		
 		return lista;
 	}
@@ -30,7 +32,7 @@ public class Fornecedor implements EntidadeForte{
 	
 	public int getAttributeCount () {
 		
-		return 3;
+		return attributeCount;
 	}
 	
 	public String[] getAttributes () {
@@ -42,6 +44,20 @@ public class Fornecedor implements EntidadeForte{
 		atributos[2] = endereco;
 		
 		return atributos;
+	}
+	
+	public void linkEntities (ArrayList <Entidade> entities) {
+		
+	}
+	
+	public int getEntityCount () {
+		
+		return entityCount;
+	}
+	
+	public EntidadeForte[] getEntidades () {
+	
+		return null;
 	}
 	
 	private String codigo;

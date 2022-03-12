@@ -8,6 +8,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.SQLTimeoutException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import papelaria.dao.TabelaDAO;
@@ -21,9 +22,10 @@ public class TabelaDAOmySQL implements TabelaDAO {
 	protected boolean abreConexao () {
 		
 		try {
-			
+							
 			//Faz a conexão com o banco de dados naquele ip, usuário e senha
-			connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lucasbd", "root", "123");
+			connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:12345/Papel_E_Art", "root", "123");
+			
 			return true;
 		}
 		catch (SQLTimeoutException sqlTimeoutException) {
@@ -32,7 +34,22 @@ public class TabelaDAOmySQL implements TabelaDAO {
 		}
 		catch (SQLException sqlException) {
 			
-			System.out.print("DATABASE ACCESS ERROR\n");
+			System.out.print("DATABASE ACCESS ERROR\n" + sqlException.getMessage());
+		}
+		
+		return false;
+	}
+	
+	protected boolean fechaConexao() {
+		
+		try {
+			
+			connection.close();
+			return true;
+		}
+		catch (SQLException e) {
+			
+			e.printStackTrace();
 		}
 		
 		return false;
@@ -42,38 +59,45 @@ public class TabelaDAOmySQL implements TabelaDAO {
 	@Override
 	//Adiciona uma entidade a uma tabela sem se preocupar com campos obrigatórios, quem chamar este método deve saber quais são NON NULL no banco.
 	public boolean adicionar (Entidade entidade, String[] fields, String[] values) {
-
-		String sql = "INSERT INTO " + entidade.getDescriptor() + " VALUES (";
 		
-		for (int i = 0; i < fields.length; i ++) {
+		if (abreConexao()) {
 			
-			sql.concat(fields[i] + ", ");
-		}
-		
-		sql = sql.substring(0, sql.length() - 2);
-		sql.concat(")\n VALUES (");
-		
-		for (int i = 0; i < fields.length; i ++) {
+			String sql = "INSERT INTO " + entidade.getDescriptor() + " VALUES (";
 			
-			sql.concat("\'" + values[i] + "\', ");
-		}
-		
-		sql = sql.substring(0, sql.length() - 2);		
-		sql.concat(");");
-		
-		try {
+			for (int i = 0; i < fields.length; i ++) {
+				
+				sql.concat(fields[i] + ", ");
+			}
 			
-			//Executa a instrução sql e retorna true se nenhum erro ocorre
-			connection.createStatement().execute(sql);
-			return true;
-		}
-		catch (SQLTimeoutException sqlTimeoutException) {
+			sql = sql.substring(0, sql.length() - 2);
+			sql.concat(")\n VALUES (");
 			
-			System.out.print("ACCESS TIMEOUT");
-		}
-		catch (SQLException sqlException) {
+			for (int i = 0; i < fields.length; i ++) {
+				
+				sql.concat("\'" + values[i] + "\', ");
+			}
 			
-			System.out.print("DATABASE ERROR");
+			sql = sql.substring(0, sql.length() - 2);		
+			sql.concat(");");
+			
+			try {
+				
+				//Executa a instrução sql e retorna true se nenhum erro ocorre
+				connection.createStatement().execute(sql);
+				return true;
+			}
+			catch (SQLTimeoutException sqlTimeoutException) {
+				
+				System.out.print("ACCESS TIMEOUT");
+			}
+			catch (SQLException sqlException) {
+				
+				System.out.print("DATABASE ERROR");
+			}
+			finally {
+				
+				fechaConexao();
+			}
 		}
 		
 		return false;
@@ -83,31 +107,38 @@ public class TabelaDAOmySQL implements TabelaDAO {
 	//recebe o lugar ONDE será atualizado na tabela, e recebe um os campos a serem trocados e os valores que seram inseridos nesses campos, o número de campos e valores deve ser igual
 	public boolean atualizar (Entidade entidade, String where, String[] fields, String[] values) {
 
-		String sql = "UPDATE " + entidade.getDescriptor() + "\nSET ";
-		
-		for (int i = 0; i < fields.length; i ++) {
+		if (abreConexao()) {
 			
-			sql.concat(fields[i] + " = (\'" + values[i] + "\'), ");
-		}
-		
-		sql = sql.substring(0, sql.length() - 2);
-		
-		sql.concat("\nWHERE " + where + ';');
-		
-		try {
+			String sql = "UPDATE " + entidade.getDescriptor() + "\nSET ";
 			
-			//Executa a instrução sql de atualizar e retorna verdadeiro se nenhum erro ocorreu
-			connection.createStatement().executeUpdate(sql);
-			return true;
-		}
-		catch (SQLTimeoutException sqlTimeoutException) {
+			for (int i = 0; i < fields.length; i ++) {
+				
+				sql.concat(fields[i] + " = (\'" + values[i] + "\'), ");
+			}
 			
-			System.out.print("ACCESS TIMEOUT");
-		}
-		catch (SQLException sqlException) {
+			sql = sql.substring(0, sql.length() - 2);
 			
-			System.out.print("DATABASE ERROR");
-		}
+			sql.concat("\nWHERE " + where + ';');
+			
+			try {
+				
+				//Executa a instrução sql de atualizar e retorna verdadeiro se nenhum erro ocorreu
+				connection.createStatement().executeUpdate(sql);
+				return true;
+			}
+			catch (SQLTimeoutException sqlTimeoutException) {
+				
+				System.out.print("ACCESS TIMEOUT");
+			}
+			catch (SQLException sqlException) {
+				
+				System.out.print("DATABASE ERROR");
+			}
+			finally {
+				
+				fechaConexao();
+			}
+		}		
 		
 		return false;
 	}
@@ -115,20 +146,27 @@ public class TabelaDAOmySQL implements TabelaDAO {
 	//Faz um 'DELETE FROM' de uma entidade específica procurando por um valor específico
 	public int deletar (Entidade entidade, String where, String value) {
 
-		String sql = "DELETE FROM " + entidade.getDescriptor() + " WHERE " + where + "=" + value + ';';
-		
-		try {
+		if(abreConexao()) {
 			
-			//Executa a instrução sql no banco de dados e retorna quantas linhas de tabela foram afetadas
-			return connection.createStatement().executeUpdate(sql);
-		}
-		catch (SQLTimeoutException sqlTimeoutException) {
+			String sql = "DELETE FROM " + entidade.getDescriptor() + " WHERE " + where + "=" + value + ';';
 			
-			System.out.print("ACCESS TIMEOUT");
-		}
-		catch (SQLException sqlException) {
-			
-			System.out.print("DATABASE ERROR");
+			try {
+				
+				//Executa a instrução sql no banco de dados e retorna quantas linhas de tabela foram afetadas
+				return connection.createStatement().executeUpdate(sql);
+			}
+			catch (SQLTimeoutException sqlTimeoutException) {
+				
+				System.out.print("ACCESS TIMEOUT");
+			}
+			catch (SQLException sqlException) {
+				
+				System.out.print("DATABASE ERROR");
+			}
+			finally {
+				
+				fechaConexao();
+			}
 		}
 		
 		return 0;
@@ -138,90 +176,235 @@ public class TabelaDAOmySQL implements TabelaDAO {
 	@Override
 	public int deletar (EntidadeForte entidade) {
 
-		//Aqui no código, toda interface utiliza do método getCodigo e setCodigo, mas no banco de dados o nome desses campos é "CPF" para seres humanos.
-		String codigo = "Código";
-		if (entidade.getDescriptor() == "Funcionário" || entidade.getDescriptor() == "Cliente") {
+		if (abreConexao()) {
 			
-			codigo = "CPF";
-		}
-		
-		String sql = "DELETE FROM " + entidade.getDescriptor() + " WHERE " + codigo + " = " + entidade.getCodigo() + ';';
-		
-		try {
+			//Aqui no código, toda interface utiliza do método getCodigo e setCodigo, mas no banco de dados o nome desses campos é "CPF" para seres humanos.
+			String codigo = "Código";
+			if (entidade.getDescriptor() == "Funcionário" || entidade.getDescriptor() == "Cliente") {
+				
+				codigo = "CPF";
+			}
 			
-			//Executa a instrução sql no banco de dados e retorna quantas linhas de tabela foram afetadas
-			return connection.createStatement().executeUpdate(sql);
-		}
-		catch (SQLTimeoutException sqlTimeoutException) {
+			String sql = "DELETE FROM " + entidade.getDescriptor() + " WHERE " + codigo + " = " + entidade.getCodigo() + ';';
 			
-			System.out.print("ACCESS TIMEOUT");
-		}
-		catch (SQLException sqlException) {
-			
-			System.out.print("DATABASE ERROR");
+			try {
+				
+				//Executa a instrução sql no banco de dados e retorna quantas linhas de tabela foram afetadas
+				return connection.createStatement().executeUpdate(sql);
+			}
+			catch (SQLTimeoutException sqlTimeoutException) {
+				
+				System.out.print("ACCESS TIMEOUT");
+			}
+			catch (SQLException sqlException) {
+				
+				System.out.print("DATABASE ERROR");
+			}
+			finally {
+				
+				fechaConexao();
+			}
 		}
 		
 		return 0;
 	}
+	
+	public Entidade getEntidade (Entidade entidade, String where, String codigo) {
+		
+		Entidade result = null;
+		
+		if (abreConexao()) {
+			
+			String sql = "SELECT * FROM Papel_E_Art." + entidade.getDescriptor() + " WHERE " + where + " = \"" + codigo + "\";";
+			
+			try {
+				
+				//Recebe o conjunto ResultSet da consulta SQL, ResultSet pode ser compreendido como um List de Entidades da tabela, cada item do ResultSet sendo uma linha da tabela.
+				ResultSet set =  connection.createStatement().executeQuery(sql);
+				//Recebe os metadados da tabela em que a consulta foi feita
+				ResultSetMetaData meta = set.getMetaData();
+				
+				if (set != null) {
+					
+					ArrayList <String> row = new ArrayList <String> ();
+					
+					Entidade nova = entidade.getClass().getDeclaredConstructor().newInstance();
+					
+					set.next();
+					for (int i = 1; i < meta.getColumnCount() + 1; i ++) {
+						
+						//Adiciona cada valor da linha no array
+						row.add(set.getString(i));
+					}
+					
+					nova.setAttributes(row);
+					
+					Entidade[] dependencias = new Entidade[nova.getEntityCount()];
+					
+					if (nova.getEntityCount() > 0) {	
+						
+						for (int i = 0; i < nova.getEntityCount(); i ++) {
+							
+							dependencias[i] = getEntidade(nova.getEntidades()[i].getClass().getDeclaredConstructor().newInstance(),
+														nova.getEntidades()[i].listAttributes()[0],
+														nova.getEntidades()[i].getCodigo());
+						}						
+					}
+					
+					result = nova;
+					result.linkEntities(new ArrayList <Entidade> (Arrays.asList(dependencias)));
+				} 
+			}
+			catch (SQLTimeoutException sqlTimeoutException) {
+				
+				System.out.print("ACCESS TIMEOUT");
+			}
+			catch (SQLException sqlException) {
+				
+				System.out.print("DATABASE ERROR");
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally {
+				
+				try {
+					if (connection.isValid(1)) {
+						
+						fechaConexao();
+					}
+				}
+				catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return result;
+	}
 
 	@Override
 	// Retorna uma lista de entidades numa tabela do banco, ou seja, retorna a tabela inteira em forma de lista.
-	public List <Entidade> listar (Entidade entidade) {
+	public Entidade[] listar (Entidade entidade) {
 		
-		ArrayList <Entidade> lista = new ArrayList <Entidade> ();
+		Entidade[] lista = null;
 		
-		String sql = "SELECT * FROM " + entidade.getDescriptor() + ';';
-		
-		try {
-			//Recebe o conjunto ResultSet da consulta SQL, ResultSet pode ser compreendido como um List de Entidades da tabela, cada item do ResultSet sendo uma linha da tabela.
-			ResultSet set =  connection.createStatement().executeQuery(sql);
-			//Recebe os metadados da tabela em que a consulta foi feita
-			ResultSetMetaData meta = set.getMetaData();
+		if(abreConexao()) {
 			
-			while (set.next()) {
+			String sql = "SELECT * FROM " + entidade.getDescriptor() + ';';
+			
+			try {
+				//Recebe o conjunto ResultSet da consulta SQL, ResultSet pode ser compreendido como um List de Entidades da tabela, cada item do ResultSet sendo uma linha da tabela.
+				ResultSet set =  connection.createStatement().executeQuery(sql);
+				//Recebe os metadados da tabela em que a consulta foi feita
+				ResultSetMetaData meta = set.getMetaData();
 				
-				//Cria uma Entidade da mesma exata classe do parâmetro 'entidade'
-				Entidade nova = entidade.getClass().getDeclaredConstructor().newInstance();
-				//Um array para armazenar cada valor da linha inteira
-				ArrayList <String> row = new ArrayList <String> ();
-				
-				for (int i = 1; i < meta.getColumnCount() + 1; i ++) {
+				if (set != null) {
 					
-					//Adiciona cada valor da linha no array
-					row.add(set.getString(i));
+					ArrayList <Entidade> temp = new ArrayList <Entidade> ();
+
+					while (set.next()) {
+						
+						//Cria uma Entidade da mesma exata classe do parâmetro 'entidade'
+						Entidade nova = entidade.getClass().getDeclaredConstructor().newInstance();
+						//Um array para armazenar cada valor da linha inteira
+						ArrayList <String> row = new ArrayList <String> ();
+						
+						for (int i = 1; i < meta.getColumnCount() + 1; i ++) {
+							
+							//Adiciona cada valor da linha no array
+							row.add(set.getString(i));
+						}
+						
+						//Atribui os valores coletados para a classe exata, qualquer que seja ela, setAttributes é parte da interface Entidade, e portanto funciona para qualquer que seja a implementação de Entidade
+						nova.setAttributes(row);
+						
+						Entidade[] dependencias = new Entidade[nova.getEntityCount()];
+						
+						if (nova.getEntityCount() > 0) {
+							
+							for (int i = 0; i < nova.getEntityCount(); i ++) {
+								
+								dependencias[i] = getEntidade(nova.getEntidades()[i].getClass().getDeclaredConstructor().newInstance(),
+															nova.getEntidades()[i].listAttributes()[0],
+															nova.getEntidades()[i].getCodigo());
+							}
+						}
+						
+						nova.linkEntities(new ArrayList <Entidade> (Arrays.asList(dependencias)));
+						
+						//Adiciona à lista que será retornada uma Entidade específica com valores salvos.
+						temp.add(nova);
+					}
+					
+					if (temp.size() > 0) {
+						
+						Entidade[] filtro = (Entidade[]) temp.toArray (new Entidade[entidade.getClass().getDeclaredConstructor().newInstance().getAttributeCount()]);
+						while (filtro[filtro.length - 1] == null) {
+							
+							filtro = Arrays.copyOf(filtro, filtro.length - 1);
+						} 
+							
+						lista = filtro;
+					}
 				}
 				
-				//Atribui os valores coletados para a classe exata, qualquer que seja ela, setAttributes é parte da interface Entidade, e portanto funciona para qualquer que seja a implementação de Entidade
-				nova.setAttributes(row);
-				//Adiciona à lista que será retornada uma Entidade específica com valores salvos.
-				lista.add(nova);
 			}
-		}
-		catch (SQLTimeoutException sqlTimeoutException) {
-			
-			System.out.print("ACCESS TIMEOUT");
-		}
-		catch (SQLException sqlException) {
-			
-			System.out.print("DATABASE ERROR");
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			catch (SQLTimeoutException sqlTimeoutException) {
+				
+				System.out.print("ACCESS TIMEOUT");
+			}
+			catch (SQLException sqlException) {
+				
+				System.out.print("DATABASE ERROR");
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally {
+				
+				try {
+					if (connection.isValid(1)) {
+						
+						fechaConexao();
+					}
+				}
+				catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		
 		return lista;

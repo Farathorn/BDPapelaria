@@ -1,20 +1,58 @@
 package papelaria;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JButton;
-import javax.swing.JDesktopPane;
-import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionListener;
-import java.awt.Desktop;
-import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
+
+import papelaria.dao.TabelaDAO;
+import papelaria.entidades.Entidade;
+import papelaria.entidades.Produto;
+import papelaria.entidades.Venda;
 
 
 public class VendasJPanel extends JPanel {
 	private JTable table;
+	TabelaDAO dao = DAOFactory.createDAO();
+
+	private void preencherTable () {
+		
+		Entidade[] filtro = dao.listar(new Venda());
+		Entidade[] lista;
+		if (filtro == null) {
+			
+			table.setModel(new DefaultTableModel(null, new String[] {
+					"C\u00F3digo", "Tipo", "Valor", "Forma de Pagamento", "Parcelamento", "Funcion\u00E1rio", "Cliente", "Franquia"
+			}));
+		}
+		else {
+			
+			lista = filtro;
+			String[][] tabela = new String[lista.length][new Venda().getAttributeCount()];
+			
+			if (lista.length > 0) {
+				
+				for (int i = 0; i < lista.length; i ++) {
+					
+					tabela[i] = lista[i].getAttributes();
+				}
+				
+				DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+				for (int i = 0; i < table.getRowCount(); i ++) {
+					
+					dtm.removeRow(i);
+				}
+				
+				table.setModel(new DefaultTableModel(tabela, new String[] {
+						"C\u00F3digo", "Tipo", "Valor", "Forma de Pagamento", "Parcelamento", "Funcion\u00E1rio", "Cliente", "Franquia"
+				}));
+			}
+		}
+	}
 
 	/**
 	 * Create the panel.
@@ -106,7 +144,10 @@ public class VendasJPanel extends JPanel {
 		});
 		scrollPane.setViewportView(table);
 		
+		preencherTable();
+		
 		JButton btnAdicionar = new JButton("Adicionar");
+		
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -127,7 +168,7 @@ public class VendasJPanel extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//Qual venda foi selecionada ainda não está implementado
+				//Qual venda foi selecionada ainda nï¿½o estï¿½ implementado
 				ComprasJFrame itens = new ComprasJFrame();
 				itens.setTitle("Itens da venda " + "");
 				itens.setVisible(true);

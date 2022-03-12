@@ -1,6 +1,13 @@
 package papelaria;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.SystemColor;
@@ -10,6 +17,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -25,16 +34,72 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
 import net.miginfocom.swing.MigLayout;
-
+import papelaria.dao.TabelaDAO;
+import papelaria.entidades.Entidade;
+import papelaria.entidades.Franquia;
 import java.awt.Dimension;
 
 
 public class FranquiaJPanel extends JPanel {
-	private JTable table;
+	private final class DefaultTableModelExtension extends DefaultTableModel {
+		Class[] columnTypes = new Class[] {
+			String.class, String.class, String.class
+		};
+		boolean[] columnEditables = new boolean[] {
+			false, false, false
+		};
 
-	/**
-	 * Create the panel.
-	 */
+		private DefaultTableModelExtension(Object[][] arg0, Object[] arg1) {
+			super(arg0, arg1);
+		}
+
+		public Class getColumnClass(int columnIndex) {
+			return columnTypes[columnIndex];
+		}
+
+		public boolean isCellEditable(int row, int column) {
+			return columnEditables[column];
+		}
+	}
+	private JTable table;
+	TabelaDAO dao = DAOFactory.createDAO();
+	
+	private void preencherTable () {
+		
+		Entidade[] filtro = dao.listar(new Franquia());
+		Entidade[] lista;
+		if (filtro == null) {
+			
+			table.setModel(new DefaultTableModel(null, new String[] {
+					"C\u00F3digo", "Endere\u00E7o", "Cofre"
+			}));
+		}
+		else {
+			
+			lista = filtro;
+			String[][] tabela = new String[lista.length][new Franquia().getAttributeCount()];
+			
+			if (lista.length > 0) {
+				
+				for (int i = 0; i < lista.length; i ++) {
+					
+					tabela[i] = lista[i].getAttributes();
+				}
+				
+				DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+				for (int i = 0; i < table.getRowCount(); i ++) {
+					
+					dtm.removeRow(i);
+				}
+				
+				table.setModel(new DefaultTableModel(tabela, new String[] {
+						"C\u00F3digo", "Endere\u00E7o", "Cofre"
+				}));
+			}
+		}
+		
+	}
+
 	public FranquiaJPanel () {
 		
 		setBounds(100, 100, 1016, 861);
@@ -44,97 +109,83 @@ public class FranquiaJPanel extends JPanel {
 		add(scrollPane, BorderLayout.CENTER);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-			},
-			new String[] {
-				"C\u00F3digo", "Endere\u00E7o", "Cofre"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-			boolean[] columnEditables = new boolean[] {
-				false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
+		table.setModel(new DefaultTableModelExtension(new Object[][] {
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+			{null, null, null},
+		}, new String[] {
+			"Código", "Endereço", "Cofre"
+		}));
 		scrollPane.setViewportView(table);
+		
+		preencherTable();
 		
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.WEST);
@@ -155,7 +206,7 @@ public class FranquiaJPanel extends JPanel {
 				adicionar.setVisible(true);
 			}
 		});
-		btnAdicionar.setPreferredSize(new Dimension(77, 120));
+		btnAdicionar.setPreferredSize(new Dimension(70, 120));
 		panel.add(btnAdicionar, "cell 0 12");
 		
 		JButton btnRemover = new JButton("Remover");

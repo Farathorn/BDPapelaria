@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public class Cliente implements EntidadeForte {
 	
-	private String descriptor = "Cliente";
+	public static String descriptor = "Cliente";
+	public static int attributeCount = 4;
+	public static int entityCount = 0;
 	
 	public String getDescriptor () {
 		
@@ -31,7 +33,7 @@ public class Cliente implements EntidadeForte {
 	
 	public int getAttributeCount () {
 		
-		return 4;
+		return attributeCount;
 	}
 	
 	public String[] getAttributes () {
@@ -44,6 +46,20 @@ public class Cliente implements EntidadeForte {
 		atributos[3] = Double.toString(gastoTotal);
 		
 		return atributos;
+	}
+	
+	public void linkEntities (ArrayList <Entidade> entities) {
+		
+	};
+	
+	public int getEntityCount () {
+		
+		return entityCount;
+	}
+	
+	public EntidadeForte[] getEntidades () {
+		
+		return null;
 	}
 	
 	private String cpf;
