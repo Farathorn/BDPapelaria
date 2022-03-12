@@ -6,6 +6,7 @@ public class Shopping implements EntidadeForte {
 	
 	public static String descriptor = "Shopping";
 	public static int attributeCount = 4;
+	public static int entityCount = 0;
 	
 	public String getDescriptor () {
 		
@@ -14,7 +15,7 @@ public class Shopping implements EntidadeForte {
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"Cï¿½digo", "Nome", "Endereï¿½o", "Aluguel"};
+		String[] lista = {"C\u00F3digo", "Nome", "Endereço", "Aluguel"};
 		
 		return lista;
 	}
@@ -45,6 +46,20 @@ public class Shopping implements EntidadeForte {
 		atributos[3] = Double.toString(aluguel);
 		
 		return atributos;
+	}
+	
+	public void linkEntities (ArrayList <Entidade> entities) {
+		
+	}
+	
+	public int getEntityCount () {
+		
+		return entityCount;
+	}
+	
+	public EntidadeForte[] getEntidades () {
+		
+		return null;
 	}
 	
 	private String codigo;

@@ -208,6 +208,96 @@ public class TabelaDAOmySQL implements TabelaDAO {
 		
 		return 0;
 	}
+	
+	public Entidade getEntidade (Entidade entidade, String where, String codigo) {
+		
+		Entidade result = null;
+		
+		if (abreConexao()) {
+			
+			String sql = "SELECT * FROM Papel_E_Art." + entidade.getDescriptor() + " WHERE " + where + " = \"" + codigo + "\";";
+			
+			try {
+				
+				//Recebe o conjunto ResultSet da consulta SQL, ResultSet pode ser compreendido como um List de Entidades da tabela, cada item do ResultSet sendo uma linha da tabela.
+				ResultSet set =  connection.createStatement().executeQuery(sql);
+				//Recebe os metadados da tabela em que a consulta foi feita
+				ResultSetMetaData meta = set.getMetaData();
+				
+				if (set != null) {
+					
+					ArrayList <String> row = new ArrayList <String> ();
+					
+					Entidade nova = entidade.getClass().getDeclaredConstructor().newInstance();
+					
+					set.next();
+					for (int i = 1; i < meta.getColumnCount() + 1; i ++) {
+						
+						//Adiciona cada valor da linha no array
+						row.add(set.getString(i));
+					}
+					
+					nova.setAttributes(row);
+					
+					Entidade[] dependencias = new Entidade[nova.getEntityCount()];
+					
+					if (nova.getEntityCount() > 0) {	
+						
+						for (int i = 0; i < nova.getEntityCount(); i ++) {
+							
+							dependencias[i] = getEntidade(nova.getEntidades()[i].getClass().getDeclaredConstructor().newInstance(),
+														nova.getEntidades()[i].listAttributes()[0],
+														nova.getEntidades()[i].getCodigo());
+						}						
+					}
+					
+					result = nova;
+					result.linkEntities(new ArrayList <Entidade> (Arrays.asList(dependencias)));
+				} 
+			}
+			catch (SQLTimeoutException sqlTimeoutException) {
+				
+				System.out.print("ACCESS TIMEOUT");
+			}
+			catch (SQLException sqlException) {
+				
+				System.out.print("DATABASE ERROR");
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally {
+				
+				try {
+					if (connection.isValid(1)) {
+						
+						fechaConexao();
+					}
+				}
+				catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return result;
+	}
 
 	@Override
 	// Retorna uma lista de entidades numa tabela do banco, ou seja, retorna a tabela inteira em forma de lista.
@@ -244,6 +334,21 @@ public class TabelaDAOmySQL implements TabelaDAO {
 						
 						//Atribui os valores coletados para a classe exata, qualquer que seja ela, setAttributes é parte da interface Entidade, e portanto funciona para qualquer que seja a implementação de Entidade
 						nova.setAttributes(row);
+						
+						Entidade[] dependencias = new Entidade[nova.getEntityCount()];
+						
+						if (nova.getEntityCount() > 0) {
+							
+							for (int i = 0; i < nova.getEntityCount(); i ++) {
+								
+								dependencias[i] = getEntidade(nova.getEntidades()[i].getClass().getDeclaredConstructor().newInstance(),
+															nova.getEntidades()[i].listAttributes()[0],
+															nova.getEntidades()[i].getCodigo());
+							}
+						}
+						
+						nova.linkEntities(new ArrayList <Entidade> (Arrays.asList(dependencias)));
+						
 						//Adiciona à lista que será retornada uma Entidade específica com valores salvos.
 						temp.add(nova);
 					}
@@ -251,13 +356,12 @@ public class TabelaDAOmySQL implements TabelaDAO {
 					if (temp.size() > 0) {
 						
 						Entidade[] filtro = (Entidade[]) temp.toArray (new Entidade[entidade.getClass().getDeclaredConstructor().newInstance().getAttributeCount()]);
-						if (filtro[filtro.length - 1] == null) {
+						while (filtro[filtro.length - 1] == null) {
 							
-							lista = Arrays.copyOf(filtro, filtro.length - 1);
-						} else {
+							filtro = Arrays.copyOf(filtro, filtro.length - 1);
+						} 
 							
-							lista = filtro;
-						}
+						lista = filtro;
 					}
 				}
 				

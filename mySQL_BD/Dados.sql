@@ -70,3 +70,6 @@ INSERT INTO Produto (Quantidade, Descrição, Preço_Unitário, Preço_Total, Es
 VALUES (5000, "Papel A4", 0.10, 500.00, 3);
 INSERT INTO Produto (Quantidade, Descrição, Preço_Unitário, Preço_Total, Estoque)
 VALUES (200, "Lapis FaberCastel", 1.25, 250.00, 3);
+
+INSERT INTO Venda (Tipo, Valor, Forma_de_Pagamento, Parcelamento, Funcionário, Cliente, Franquia)
+VALUES ("Loja", 139.99, "Cartão", "2x", "12345678910", "11111111111", "2");
