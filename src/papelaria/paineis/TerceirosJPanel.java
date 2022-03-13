@@ -42,5 +42,4 @@ public class TerceirosJPanel extends TabelaJPanel {
 		ShoppingJPanel Sul = new ShoppingJPanel();
 		add(Sul);
 	}
-
 }

@@ -13,6 +13,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import papelaria.ComprasJFrame;
+import papelaria.adicionar.AdicionarVendaJFrame;
 import papelaria.dao.TabelaDAO;
 import papelaria.entidades.Entidade;
 import papelaria.entidades.Venda;
@@ -26,6 +27,7 @@ public class VendasJPanel extends TabelaJPanel {
 	public VendasJPanel () {
 		
 		super(new Venda());
+		telaAdicionar = new AdicionarVendaJFrame(this);
 		
 		setBounds(100, 100, 1016, 861);
 		setLayout(null);

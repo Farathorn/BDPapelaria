@@ -143,6 +143,7 @@ public class TabelaJPanel extends JPanel {
 	public TabelaJPanel (Entidade entidade) {
 		
 		this.entidade = entidade;
+		
 		table = new JTable();
 		btnAdicionar = new JButton("Adicionar");
 		btnRemover= new JButton("Remover");
