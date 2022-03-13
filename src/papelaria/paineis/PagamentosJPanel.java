@@ -1,45 +1,45 @@
-package papelaria;
+package papelaria.paineis;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import papelaria.adicionar.AdicionarCustoPagamentosJFrame;
 import papelaria.dao.TabelaDAO;
-import papelaria.entidades.CustoDireto;
 import papelaria.entidades.Entidade;
+import papelaria.entidades.Pagamento;
 
 
-public class CustosDiretosJPanel extends TabelaJPanel {
-	
+public class PagamentosJPanel extends TabelaJPanel {
+
 	/**
 	 * Create the panel.
 	 */
-	public CustosDiretosJPanel () {
+	public PagamentosJPanel () {
 		
-		super(new CustoDireto());
-		telaAdicionar = new AdicionarCustoDiretosJFrame(this);
-		
+		super(new Pagamento());
+		telaAdicionar = new AdicionarCustoPagamentosJFrame(this);
+
 		setBounds(100, 100, 1016, 861);
 		setLayout(null);
 		
+		btnAdicionar.setBounds(10, 244, 111, 83);
+		add(btnAdicionar);
+		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(150, 0, 856, 850);
+		scrollPane.setBounds(130, 0, 876, 850);
 		add(scrollPane);
 		
 		scrollPane.setViewportView(table);
 		
 		preencherTable();
 		
-		btnAdicionar.setBounds(20, 293, 123, 52);
-		add(btnAdicionar);
-		
-		btnRemover.setBounds(53, 362, 89, 23);
+		btnRemover.setBounds(44, 345, 75, 53);
 		add(btnRemover);
 	}
 

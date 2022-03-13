@@ -1,4 +1,4 @@
-package papelaria;
+package papelaria.paineis;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import net.miginfocom.swing.MigLayout;
+import papelaria.adicionar.AdicionarFranquiaJFrame;
 import papelaria.dao.TabelaDAO;
 import papelaria.entidades.Entidade;
 import papelaria.entidades.Franquia;

@@ -1,4 +1,4 @@
-package papelaria;
+package papelaria.adicionar;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 import papelaria.entidades.Entidade;
+import papelaria.paineis.TabelaJPanel;
 
 public abstract class TelaAdicionarJFrame extends JFrame{
 

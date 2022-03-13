@@ -19,6 +19,15 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import papelaria.paineis.CustosDiretosJPanel;
+import papelaria.paineis.CustosIndiretosJPanel;
+import papelaria.paineis.FranquiaJPanel;
+import papelaria.paineis.FuncionarioJPanel;
+import papelaria.paineis.PagamentosJPanel;
+import papelaria.paineis.ProdutosJPanel;
+import papelaria.paineis.TerceirosJPanel;
+import papelaria.paineis.VendasJPanel;
+
 
 public class TelaJFrame extends JFrame {
 

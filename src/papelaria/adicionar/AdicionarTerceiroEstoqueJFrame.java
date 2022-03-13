@@ -1,4 +1,4 @@
-package papelaria;
+package papelaria.adicionar;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -11,8 +11,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import papelaria.paineis.TabelaJPanel;
 
-public class AdicionarTerceiroFornecedorJFrame extends TelaAdicionarJFrame {
+
+public class AdicionarTerceiroEstoqueJFrame extends TelaAdicionarJFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -22,7 +24,7 @@ public class AdicionarTerceiroFornecedorJFrame extends TelaAdicionarJFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdicionarTerceiroFornecedorJFrame (TabelaJPanel caller) {
+	public AdicionarTerceiroEstoqueJFrame (TabelaJPanel caller) {
 		
 		super(caller);
 		

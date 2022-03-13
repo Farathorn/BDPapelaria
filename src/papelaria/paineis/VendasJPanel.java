@@ -1,4 +1,4 @@
-package papelaria;
+package papelaria.paineis;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import papelaria.ComprasJFrame;
 import papelaria.dao.TabelaDAO;
 import papelaria.entidades.Entidade;
 import papelaria.entidades.Venda;

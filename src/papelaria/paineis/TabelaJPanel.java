@@ -1,4 +1,4 @@
-package papelaria;
+package papelaria.paineis;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import papelaria.DAOFactory;
+import papelaria.adicionar.TelaAdicionarJFrame;
 import papelaria.dao.TabelaDAO;
 import papelaria.entidades.Entidade;
 import papelaria.entidades.Franquia;

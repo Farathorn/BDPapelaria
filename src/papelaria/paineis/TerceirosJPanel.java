@@ -1,4 +1,4 @@
-package papelaria;
+package papelaria.paineis;
 
 import java.awt.BorderLayout;
 import papelaria.dao.TabelaDAO;

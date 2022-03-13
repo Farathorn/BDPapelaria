@@ -1,24 +1,26 @@
-package papelaria;
+package papelaria.paineis;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import net.miginfocom.swing.MigLayout;
-import papelaria.entidades.Fornecedor;
+import papelaria.adicionar.AdicionarTerceiroEstoqueJFrame;
+import papelaria.entidades.Estoque;
 import papelaria.entidades.Franquia;
 
-public class FornecedorJPanel extends TabelaJPanel {
+public class EstoqueJPanel extends TabelaJPanel {
 
-	public FornecedorJPanel () {
+	public EstoqueJPanel () {
 		
-		super(new Fornecedor());
-		telaAdicionar = new AdicionarTerceiroFornecedorJFrame(this);
+		super(new Estoque());
+		telaAdicionar = new AdicionarTerceiroEstoqueJFrame(this);
 		
-setLayout(new BorderLayout(0, 0));
+		setLayout(new BorderLayout(0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
@@ -27,22 +29,21 @@ setLayout(new BorderLayout(0, 0));
 		scrollPane.setViewportView(table);
 		
 		JPanel panel = new JPanel();
-		panel.setSize(new Dimension(100, 0));
 		add(panel, BorderLayout.WEST);
 		panel.setLayout(new BorderLayout (0, 0));
 		
-		JPanel panel_1 = new JPanel();
-		panel.add(panel_1, BorderLayout.NORTH);
-		panel_1.setLayout(new BorderLayout(0, 0));
+		JPanel panel_botoes = new JPanel();
+		panel.add(panel_botoes, BorderLayout.CENTER);
+		panel_botoes.setLayout(new BorderLayout (0, 0));
 		
 		btnAdicionar.setPreferredSize(new Dimension(70, 120));
 		panel.add(btnAdicionar, BorderLayout.NORTH);
 		panel.add(btnRemover, BorderLayout.CENTER);
 		
-		JPanel fornecedorLabelPanel = new JPanel();
-		add(fornecedorLabelPanel, BorderLayout.NORTH);
+		JPanel estoqueLabelPanel = new JPanel();
+		add(estoqueLabelPanel, BorderLayout.NORTH);
 		
-		JLabel lblFornecedor = new JLabel("Fornecedor");
-		fornecedorLabelPanel.add(lblFornecedor);
+		JLabel lblEstoque = new JLabel("Estoque");
+		estoqueLabelPanel.add(lblEstoque);
 	}
 }

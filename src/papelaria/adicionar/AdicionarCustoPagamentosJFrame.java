@@ -1,4 +1,4 @@
-package papelaria;
+package papelaria.adicionar;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -11,18 +11,21 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import papelaria.paineis.TabelaJPanel;
 
-public class AdicionarCustoDiretosJFrame extends TelaAdicionarJFrame {
 
+public class AdicionarCustoPagamentosJFrame extends TelaAdicionarJFrame {
+	
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+    private JTextField textField_3;
 
 	/**
 	 * Create the frame.
 	 */
-	public AdicionarCustoDiretosJFrame (TabelaJPanel caller) {
+	public AdicionarCustoPagamentosJFrame (TabelaJPanel caller) {
 		
 		super(caller);
 		
@@ -42,7 +45,7 @@ public class AdicionarCustoDiretosJFrame extends TelaAdicionarJFrame {
 		panel.setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(96, 11, 120, 20);
+		textField.setBounds(110, 11, 120, 20);
 		panel.add(textField);
 		textField.setColumns(10);
 		
@@ -51,7 +54,7 @@ public class AdicionarCustoDiretosJFrame extends TelaAdicionarJFrame {
 		panel.add(lblNewLabel);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(96, 42, 300, 20);
+		textField_1.setBounds(110, 42, 220, 20);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
@@ -60,13 +63,22 @@ public class AdicionarCustoDiretosJFrame extends TelaAdicionarJFrame {
 		panel.add(lblNewLabel_1);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(96, 73, 300, 20);
+		textField_2.setBounds(110, 73, 120, 20);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Shopping:");
+		JLabel lblNewLabel_2 = new JLabel("Tipo:");
 		lblNewLabel_2.setBounds(30, 76, 100, 14);
 		panel.add(lblNewLabel_2);
+
+        textField_3 = new JTextField();
+		textField_3.setBounds(110, 104, 120, 20);
+		panel.add(textField_3);
+		textField_3.setColumns(10);
+		
+		JLabel lblNewLabel_3 = new JLabel("Funcionário:");
+		lblNewLabel_3.setBounds(30, 107, 100, 14);
+		panel.add(lblNewLabel_3);
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.SOUTH);
@@ -87,6 +99,6 @@ public class AdicionarCustoDiretosJFrame extends TelaAdicionarJFrame {
 	protected String[] getAttributes () {
 
 		return new String[] {textField.toString(), textField_1.toString(),
-							textField_2.toString()};
+							textField_2.toString(), textField_3.toString()};
 	}
 }

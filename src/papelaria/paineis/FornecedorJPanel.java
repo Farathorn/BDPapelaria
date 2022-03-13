@@ -1,4 +1,4 @@
-package papelaria;
+package papelaria.paineis;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -8,17 +8,18 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import net.miginfocom.swing.MigLayout;
+import papelaria.adicionar.AdicionarTerceiroFornecedorJFrame;
+import papelaria.entidades.Fornecedor;
 import papelaria.entidades.Franquia;
-import papelaria.entidades.Shopping;
 
-public class ShoppingJPanel extends TabelaJPanel {
+public class FornecedorJPanel extends TabelaJPanel {
 
-	public ShoppingJPanel () {
+	public FornecedorJPanel () {
 		
-		super(new Shopping());
-		telaAdicionar = new AdicionarTerceiroShoppingJFrame(this);
+		super(new Fornecedor());
+		telaAdicionar = new AdicionarTerceiroFornecedorJFrame(this);
 		
-		setLayout(new BorderLayout(0, 0));
+setLayout(new BorderLayout(0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
@@ -39,10 +40,10 @@ public class ShoppingJPanel extends TabelaJPanel {
 		panel.add(btnAdicionar, BorderLayout.NORTH);
 		panel.add(btnRemover, BorderLayout.CENTER);
 		
-		JPanel shoppingLabelPanel = new JPanel();
-		add(shoppingLabelPanel, BorderLayout.NORTH);
+		JPanel fornecedorLabelPanel = new JPanel();
+		add(fornecedorLabelPanel, BorderLayout.NORTH);
 		
-		JLabel lblNewLabel = new JLabel("Shopping");
-		shoppingLabelPanel.add(lblNewLabel);
+		JLabel lblFornecedor = new JLabel("Fornecedor");
+		fornecedorLabelPanel.add(lblFornecedor);
 	}
 }
