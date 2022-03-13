@@ -12,9 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 
-public class AdicionarFranquiaJFrame extends JFrame {
-
-	private JPanel caller;
+public class AdicionarFranquiaJFrame extends TelaAdicionarJFrame {
 	
 	private JPanel contentPane;
 	private JTextField textField;
@@ -24,9 +22,9 @@ public class AdicionarFranquiaJFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdicionarFranquiaJFrame (JPanel caller) {
+	public AdicionarFranquiaJFrame (TabelaJPanel caller) {
 		
-		this.caller = caller;
+		super(caller);
 		
 		setType(Type.POPUP);
 		setAlwaysOnTop(true);
@@ -84,5 +82,11 @@ public class AdicionarFranquiaJFrame extends JFrame {
 			}
 		});
 		panel_1.add(btnCancelar);
+	}
+	
+	protected String[] getAttributes () {
+
+		return new String[] {textField.toString(), textField_1.toString(),
+							textField_2.toString()};
 	}
 }

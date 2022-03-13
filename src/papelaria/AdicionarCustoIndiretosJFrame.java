@@ -12,10 +12,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 
-public class AdicionarCustoIndiretosJFrame extends JFrame {
+public class AdicionarCustoIndiretosJFrame extends TelaAdicionarJFrame {
 
-	private JPanel caller;
-	
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -25,9 +23,9 @@ public class AdicionarCustoIndiretosJFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdicionarCustoIndiretosJFrame (JPanel caller) {
+	public AdicionarCustoIndiretosJFrame (TabelaJPanel caller) {
 		
-		this.caller = caller;
+		super(caller);
 		
 		setType(Type.POPUP);
 		setAlwaysOnTop(true);
@@ -94,5 +92,11 @@ public class AdicionarCustoIndiretosJFrame extends JFrame {
 			}
 		});
 		panel_1.add(btnCancelar);
+	}
+	
+	protected String[] getAttributes () {
+
+		return new String[] {textField.toString(), textField_1.toString(),
+							textField_2.toString(), textField_3.toString()};
 	}
 }

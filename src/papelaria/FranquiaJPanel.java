@@ -17,7 +17,7 @@ import papelaria.entidades.Entidade;
 import papelaria.entidades.Franquia;
 
 
-public class FranquiaJPanel extends JPanel {
+public class FranquiaJPanel extends TabelaJPanel {
 	
 	private final class DefaultTableModelExtension extends DefaultTableModel {
 		Class[] columnTypes = new Class[] {
@@ -39,77 +39,11 @@ public class FranquiaJPanel extends JPanel {
 			return columnEditables[column];
 		}
 	}
-	
-	private JTable table;
-	TabelaDAO dao = DAOFactory.createDAO();
-	
-	private void preencherTable () {
-		
-		Entidade[] filtro = dao.listar(new Franquia());
-		Entidade[] lista;
-		if (filtro == null) {
-			
-			table.setModel(new DefaultTableModel(null, new String[] {
-					"C\u00F3digo", "Endere\u00E7o", "Cofre"
-			}));
-		}
-		else {
-			
-			lista = filtro;
-			String[][] tabela = new String[lista.length][new Franquia().getAttributeCount()];
-			
-			if (lista.length > 0) {
-				
-				for (int i = 0; i < lista.length; i ++) {
-					
-					tabela[i] = lista[i].getAttributes();
-				}
-				
-				DefaultTableModel dtm = (DefaultTableModel) table.getModel();
-				for (int i = 0; i < table.getRowCount(); i ++) {
-					
-					dtm.removeRow(i);
-				}
-				
-				table.setModel(new DefaultTableModel(tabela, new String[] {
-						"C\u00F3digo", "Endere\u00E7o", "Cofre"
-				}));
-			}
-		}
-		
-	}
-	
-	class AcaoAdicionarButton implements ActionListener {
-		
-		private JPanel caller;
-		
-		public AcaoAdicionarButton(JPanel caller) {
-			
-			this.caller = caller;
-		}
-		
-        public void actionPerformed(ActionEvent e) {
-
-        	AdicionarFranquiaJFrame adicionar = new AdicionarFranquiaJFrame(caller);
-        	adicionar.setLocationRelativeTo(table);
-			adicionar.setLocation(300, 300);
-			adicionar.setVisible(true);
-        }
-	}
-	
-	public boolean adicionarLinha (Entidade entidade) {
-		
-		if (dao.adicionar(entidade, entidade.listAttributes(), entidade.getAttributes())) {
-			
-			DefaultTableModel model = (DefaultTableModel) table.getModel();
-			model.addRow(entidade.getAttributes());
-			return true;
-		}
-		
-		return false;
-	}
 
 	public FranquiaJPanel () {
+		
+		super(new Franquia());
+		telaAdicionar = new AdicionarFranquiaJFrame(this);
 		
 		setBounds(100, 100, 1016, 861);
 		setLayout(new BorderLayout(0, 0));
@@ -117,84 +51,9 @@ public class FranquiaJPanel extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModelExtension(new Object[][] {
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-			{null, null, null},
-		}, new String[] {
-			"Código", "Endereço", "Cofre"
-		}));
+		preencherTable();
 		scrollPane.setViewportView(table);
 		
-		preencherTable();
 		
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.WEST);
@@ -204,12 +63,8 @@ public class FranquiaJPanel extends JPanel {
 		panel.add(panel_1, "cell 0 0,alignx left,aligny top");
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
-		JButton btnAdicionar = new JButton("Adicionar");
-		btnAdicionar.addActionListener(new AcaoAdicionarButton(this));
 		btnAdicionar.setPreferredSize(new Dimension(70, 120));
-		panel.add(btnAdicionar, "cell 0 12");
-		
-		JButton btnRemover = new JButton("Remover");
+		panel.add(btnAdicionar, "cell 0 9");
 		panel.add(btnRemover, "cell 0 13");
 
 	}

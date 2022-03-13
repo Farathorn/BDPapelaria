@@ -15,81 +15,15 @@ import papelaria.entidades.CustoDireto;
 import papelaria.entidades.Entidade;
 
 
-public class CustosDiretosJPanel extends JPanel {
-	private JTable table;
-	TabelaDAO dao = DAOFactory.createDAO();
-
-	private void preencherTable () {
-		
-		Entidade[] filtro = dao.listar(new CustoDireto());
-		Entidade[] lista;
-		if (filtro == null) {
-			
-			table.setModel(new DefaultTableModel(null, new String[] {
-					"Valor", "Descri\u00E7\u00E3o", "Shopping"
-			}));
-		}
-		else {
-			
-			lista = filtro;
-			
-			String[][] tabela = new String[lista.length][new CustoDireto().getAttributeCount()];
-			
-			if (lista.length > 0) {
-				
-				for (int i = 0; i < lista.length; i ++) {
-					
-					tabela[i] = lista[i].getAttributes();
-				}
-				
-				DefaultTableModel dtm = (DefaultTableModel) table.getModel();
-				for (int i = 0; i < table.getRowCount(); i ++) {
-					
-					dtm.removeRow(i);
-				}
-				
-				table.setModel(new DefaultTableModel(tabela, new String[] {
-						"Valor", "Descri\u00E7\u00E3o", "Shopping"
-				}));
-			}
-		}
-	}
-	
-	class AcaoAdicionarButton implements ActionListener {
-		
-		private JPanel caller;
-		
-		public AcaoAdicionarButton(JPanel custosDiretosJPanel) {
-			
-			this.caller = custosDiretosJPanel;
-		}
-		
-        public void actionPerformed(ActionEvent e) {
-
-			AdicionarCustoDiretosJFrame adicionar = new AdicionarCustoDiretosJFrame(caller);
-            adicionar.requestFocus();
-            adicionar.setLocationRelativeTo(table);
-            adicionar.setLocation(300, 300);
-            adicionar.setVisible(true);
-        }
-	}
-	
-	public boolean adicionarLinha (Entidade entidade) {
-		
-		if (dao.adicionar(entidade, entidade.listAttributes(), entidade.getAttributes())) {
-			
-			DefaultTableModel model = (DefaultTableModel) table.getModel();
-			model.addRow(entidade.getAttributes());
-			return true;
-		}
-		
-		return false;
-	}
+public class CustosDiretosJPanel extends TabelaJPanel {
 	
 	/**
 	 * Create the panel.
 	 */
 	public CustosDiretosJPanel () {
+		
+		super(new CustoDireto());
+		telaAdicionar = new AdicionarCustoDiretosJFrame(this);
 		
 		setBounds(100, 100, 1016, 861);
 		setLayout(null);
@@ -98,96 +32,15 @@ public class CustosDiretosJPanel extends JPanel {
 		scrollPane.setBounds(150, 0, 856, 850);
 		add(scrollPane);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-			},
-			new String[] {
-				"Valor", "Descri\u00E7\u00E3o", "Shopping"
-			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
 		scrollPane.setViewportView(table);
 		
 		preencherTable();
 		
-		JButton btnAdicionar = new JButton("Adicionar");
-		btnAdicionar.addActionListener(new AcaoAdicionarButton(this));
 		btnAdicionar.setBounds(20, 293, 123, 52);
 		add(btnAdicionar);
 		
-		JButton btnRemover = new JButton("Remover");
 		btnRemover.setBounds(53, 362, 89, 23);
 		add(btnRemover);
-		
-		
 	}
 
 }

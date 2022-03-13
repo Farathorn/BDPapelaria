@@ -12,10 +12,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 
-public class AdicionarTerceiroShoppingJFrame extends JFrame {
+public class AdicionarTerceiroShoppingJFrame extends TelaAdicionarJFrame {
 
-	private JPanel caller;
-	
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -25,9 +23,9 @@ public class AdicionarTerceiroShoppingJFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdicionarTerceiroShoppingJFrame (JPanel caller) {
+	public AdicionarTerceiroShoppingJFrame (TabelaJPanel caller) {
 		
-		this.caller = caller;
+		super(caller);
 		
 		setType(Type.POPUP);
 		setAlwaysOnTop(true);
@@ -94,5 +92,11 @@ public class AdicionarTerceiroShoppingJFrame extends JFrame {
 			}
 		});
 		panel_1.add(btnCancelar);
+	}
+	
+	protected String[] getAttributes () {
+
+		return new String[] {textField.toString(), textField_1.toString(),
+							textField_2.toString(), textField_3.toString()};
 	}
 }
