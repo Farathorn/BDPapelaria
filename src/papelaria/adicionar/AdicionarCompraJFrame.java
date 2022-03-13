@@ -17,7 +17,6 @@ import java.awt.event.ActionListener;
 public class AdicionarCompraJFrame extends TelaAdicionarJFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 	
 	public AdicionarCompraJFrame (TabelaJPanel caller) {
 		
@@ -52,6 +51,8 @@ public class AdicionarCompraJFrame extends TelaAdicionarJFrame {
 		
 		panel_1.add(btnAdicionar);
 		panel_1.add(btnCancelar);
+		
+		keyCheckLock();
 	}
 
 	@Override

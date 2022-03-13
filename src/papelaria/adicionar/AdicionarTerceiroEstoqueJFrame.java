@@ -17,7 +17,7 @@ import papelaria.paineis.TabelaJPanel;
 public class AdicionarTerceiroEstoqueJFrame extends TelaAdicionarJFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	
 	private JTextField textField_1;
 	private JTextField textField_2;
 
@@ -75,6 +75,8 @@ public class AdicionarTerceiroEstoqueJFrame extends TelaAdicionarJFrame {
 		
 		panel_1.add(btnAdicionar);
 		panel_1.add(btnCancelar);
+		
+		keyCheckLock();
 	}
 	
 	protected String[] getAttributes () {

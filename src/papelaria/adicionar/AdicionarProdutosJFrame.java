@@ -17,7 +17,7 @@ import papelaria.paineis.TabelaJPanel;
 public class AdicionarProdutosJFrame extends TelaAdicionarJFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
@@ -104,6 +104,8 @@ public class AdicionarProdutosJFrame extends TelaAdicionarJFrame {
 		
 		panel_1.add(btnAdicionar);
 		panel_1.add(btnCancelar);
+		
+		keyCheckLock();
 	}
 	
 	protected String[] getAttributes () {

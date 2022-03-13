@@ -9,14 +9,19 @@ import java.util.Arrays;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import papelaria.entidades.Cliente;
 import papelaria.entidades.Entidade;
+import papelaria.entidades.EntidadeForte;
+import papelaria.entidades.Funcionario;
 import papelaria.paineis.TabelaJPanel;
 
 public abstract class TelaAdicionarJFrame extends JFrame{
 
 	private TabelaJPanel caller;
+	protected JTextField textField;
 	
 	JButton btnAdicionar = new JButton("Adicionar");
 	JButton btnCancelar = new JButton("Cancelar");
@@ -36,13 +41,15 @@ public abstract class TelaAdicionarJFrame extends JFrame{
 				
 				Entidade inserida;
 				try {
+					
 					inserida = caller.entidade.getClass().getDeclaredConstructor().newInstance();
 					inserida.setAttributes(new ArrayList <String> (Arrays.asList(getAttributes())));
 					caller.adicionarLinha(inserida);
 					dispose();
-				} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+				}
+				catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 						| InvocationTargetException | NoSuchMethodException | SecurityException e1) {
-					// TODO Auto-generated catch block
+					
 					e1.printStackTrace();
 				}
 			}
@@ -53,5 +60,19 @@ public abstract class TelaAdicionarJFrame extends JFrame{
 				dispose();
 			}
 		});
+	}
+	
+	protected void keyCheckLock () {
+		
+		if (caller.entidade instanceof EntidadeForte && !(caller.entidade instanceof Cliente) && !(caller.entidade instanceof Funcionario)) {
+			
+			textField.setEnabled(false);
+			
+			int rowCount = caller.getTable().getRowCount();
+			if (rowCount > 0) {
+				
+				textField.setText(Integer.toString(Integer.parseInt((String) caller.getTable().getModel().getValueAt(rowCount - 1, 0)) + 1));
+			}
+		}
 	}
 }
