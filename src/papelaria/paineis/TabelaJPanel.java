@@ -14,15 +14,19 @@ import papelaria.adicionar.TelaAdicionarJFrame;
 import papelaria.dao.TabelaDAO;
 import papelaria.entidades.Entidade;
 import papelaria.entidades.Franquia;
+import papelaria.entidades.Venda;
 
 public class TabelaJPanel extends JPanel {
 	
 	protected JTable table;
 	public Entidade entidade;
 	protected TelaAdicionarJFrame telaAdicionar;
+	protected TabelaJPanel caller;
 	
 	protected JButton btnAdicionar;
 	protected JButton btnRemover;
+	
+	protected ActionListener acaoAdicionar;
 
 	public JTable getTable() {
 		return table;
@@ -133,7 +137,10 @@ public class TabelaJPanel extends JPanel {
 		if (dao.adicionar(entidade, entidade.listAttributes(), entidade.getAttributes())) {
 			
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
-			model.addRow(entidade.getAttributes());
+			
+			table.removeAll();
+			preencherTable();
+			
 			return true;
 		}
 		
@@ -151,6 +158,7 @@ public class TabelaJPanel extends JPanel {
 		btnAdicionar.setVisible(false);
 		btnAdicionar.setVisible(true);
 		
-		btnAdicionar.addActionListener(new AcaoAdicionarButton(this));
+		acaoAdicionar = new AcaoAdicionarButton(this);
+		btnAdicionar.addActionListener(acaoAdicionar);
 	}
 }

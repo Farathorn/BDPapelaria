@@ -1,5 +1,6 @@
 package papelaria.adicionar;
 
+import papelaria.entidades.Venda;
 import papelaria.paineis.TabelaJPanel;
 
 import javax.swing.JButton;
@@ -13,14 +14,18 @@ import java.awt.BorderLayout;
 import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class AdicionarCompraJFrame extends TelaAdicionarJFrame {
 
 	private JPanel contentPane;
+	private Venda venda;
+	private JTextField textField_1;
 	
-	public AdicionarCompraJFrame (TabelaJPanel caller) {
+	public AdicionarCompraJFrame (TabelaJPanel caller, Venda venda) {
 		
 		super(caller);
+		this.venda = venda;
 		
 		setType(Type.POPUP);
 		setAlwaysOnTop(true);
@@ -46,6 +51,15 @@ public class AdicionarCompraJFrame extends TelaAdicionarJFrame {
 		lblNewLabel.setBounds(30, 14, 100, 14);
 		panel.add(lblNewLabel);
 		
+		JLabel lblNewLabel_1 = new JLabel("Quantidade:");
+		lblNewLabel_1.setBounds(30, 40, 100, 14);
+		panel.add(lblNewLabel_1);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(158, 37, 86, 20);
+		panel.add(textField_1);
+		textField_1.setColumns(10);
+		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.SOUTH);
 		
@@ -58,7 +72,7 @@ public class AdicionarCompraJFrame extends TelaAdicionarJFrame {
 	@Override
 	protected String[] getAttributes () {
 
-		return new String[] {textField.getText()};
+		return new String[] {textField.getText(), venda.getCodigo(),
+							textField_1.getText()};
 	}
-	
 }

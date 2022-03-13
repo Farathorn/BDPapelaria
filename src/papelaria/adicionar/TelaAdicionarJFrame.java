@@ -20,7 +20,7 @@ import papelaria.paineis.TabelaJPanel;
 
 public abstract class TelaAdicionarJFrame extends JFrame{
 
-	private TabelaJPanel caller;
+	protected TabelaJPanel caller;
 	protected JTextField textField;
 	
 	JButton btnAdicionar = new JButton("Adicionar");
@@ -44,6 +44,7 @@ public abstract class TelaAdicionarJFrame extends JFrame{
 					
 					inserida = caller.entidade.getClass().getDeclaredConstructor().newInstance();
 					inserida.setAttributes(new ArrayList <String> (Arrays.asList(getAttributes())));
+					
 					caller.adicionarLinha(inserida);
 					dispose();
 				}

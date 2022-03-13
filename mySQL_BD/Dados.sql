@@ -1,8 +1,8 @@
-INSERT INTO Franquia (Cofre, Cidade)
+INSERT INTO Franquia (Cofre, Endereço)
 VALUES (50290.23, "São Paulo");
-INSERT INTO Franquia (Cofre, Cidade)
+INSERT INTO Franquia (Cofre, Endereço)
 VALUES (3800.34, "Cuiabá");
-INSERT INTO Franquia (Cofre, Cidade)
+INSERT INTO Franquia (Cofre, Endereço)
 VALUES (5921.98, "Goiânia");
 
 INSERT INTO Funcionário (CPF, Nome, Carteira_de_Trabalho, Cargo, Expediente, Salário_Base, Faltas, Venda_do_Mês, Ticket_Médio, Franquia)

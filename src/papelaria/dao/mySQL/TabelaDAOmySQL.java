@@ -334,6 +334,7 @@ public class TabelaDAOmySQL implements TabelaDAO {
 						//Atribui os valores coletados para a classe exata, qualquer que seja ela, setAttributes � parte da interface Entidade, e portanto funciona para qualquer que seja a implementa��o de Entidade
 						nova.setAttributes(row);
 						
+						//linka todas as entidades das quais a nova entidade depende
 						Entidade[] dependencias = new Entidade[nova.getEntityCount()];
 						
 						if (nova.getEntityCount() > 0) {

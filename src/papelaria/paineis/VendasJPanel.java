@@ -21,6 +21,28 @@ import papelaria.entidades.Venda;
 
 public class VendasJPanel extends TabelaJPanel {
 
+	class AcaoMostrarCompra implements ActionListener {
+		
+		private TabelaJPanel caller;
+		
+		public AcaoMostrarCompra (TabelaJPanel caller) {
+
+			this.caller = caller;
+		}
+		
+		public void actionPerformed(ActionEvent e) {
+			
+			//Qual venda foi selecionada ainda n�o est� implementado
+			if (table.getSelectedRows().length == 1) {
+				
+				ComprasJFrame itens = new ComprasJFrame(caller);
+				itens.setTitle("Itens da venda " + "");
+				itens.setVisible(true);
+			}
+					
+		}
+	}
+	
 	/**
 	 * Create the panel.
 	 */
@@ -47,16 +69,7 @@ public class VendasJPanel extends TabelaJPanel {
 		add(btnRemover);
 		
 		JButton btnNewButton = new JButton("Produtos da\n Compra");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				//Qual venda foi selecionada ainda n�o est� implementado
-				ComprasJFrame itens = new ComprasJFrame();
-				itens.setTitle("Itens da venda " + "");
-				itens.setVisible(true);
-						
-			}
-		});
+		btnNewButton.addActionListener(new AcaoMostrarCompra(this));
 		btnNewButton.setBounds(10, 464, 123, 52);
 		add(btnNewButton);
 

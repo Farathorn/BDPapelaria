@@ -15,7 +15,7 @@ public class Franquia implements EntidadeForte {
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"C\u00F3digo", "Cidade", "Cofre"};
+		String[] lista = {"C\u00F3digo", "Endere\u00E7o", "Cofre"};
 		
 		return lista;
 	}
