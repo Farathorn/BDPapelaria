@@ -39,6 +39,7 @@ public abstract class TelaAdicionarJFrame extends JFrame{
 					inserida = caller.entidade.getClass().getDeclaredConstructor().newInstance();
 					inserida.setAttributes(new ArrayList <String> (Arrays.asList(getAttributes())));
 					caller.adicionarLinha(inserida);
+					dispose();
 				} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 						| InvocationTargetException | NoSuchMethodException | SecurityException e1) {
 					// TODO Auto-generated catch block

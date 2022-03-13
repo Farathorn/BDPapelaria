@@ -83,16 +83,7 @@ public class AdicionarTerceiroShoppingJFrame extends TelaAdicionarJFrame {
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.SOUTH);
 		
-		JButton btnAdicionar = new JButton("Adicionar");
 		panel_1.add(btnAdicionar);
-		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				dispose();
-			}
-		});
 		panel_1.add(btnCancelar);
 	}
 	
