@@ -159,10 +159,10 @@ public class AdicionarFuncionarioJFrame extends TelaAdicionarJFrame {
 	@Override
 	protected String[] getAttributes () {
 
-		return new String[] {textField.toString(), textField_1.toString(),
-							textField_2.toString(), textField_3.toString(),
-							textField_4.toString(), textField_5.toString(),
-							textField_6.toString(), textField_7.toString(),
-							textField_8.toString(), textField_9.toString()};
+		return new String[] {textField.getText(), textField_1.getText(),
+							textField_2.getText(), textField_3.getText(),
+							textField_4.getText(), textField_5.getText(),
+							textField_6.getText(), textField_7.getText(),
+							textField_8.getText(), textField_9.getText()};
 	}
 }

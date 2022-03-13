@@ -98,7 +98,7 @@ public class AdicionarTerceiroShoppingJFrame extends TelaAdicionarJFrame {
 	
 	protected String[] getAttributes () {
 
-		return new String[] {textField.toString(), textField_1.toString(),
-							textField_2.toString(), textField_3.toString()};
+		return new String[] {textField.getText(), textField_1.getText(),
+							textField_2.getText(), textField_3.getText()};
 	}
 }

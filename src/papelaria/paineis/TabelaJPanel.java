@@ -102,9 +102,9 @@ public class TabelaJPanel extends JPanel {
 	
 	class AcaoAdicionarButton implements ActionListener {
 		
-		private JPanel caller;
+		private TabelaJPanel caller;
 		
-		public AcaoAdicionarButton(JPanel caller) {
+		public AcaoAdicionarButton(TabelaJPanel caller) {
 			
 			this.caller = caller;
 		}
@@ -114,7 +114,7 @@ public class TabelaJPanel extends JPanel {
         	TelaAdicionarJFrame adicionar;
 			try {
 				
-				adicionar = telaAdicionar.getClass().getDeclaredConstructor().newInstance(caller);
+				adicionar = caller.telaAdicionar.getClass().getDeclaredConstructor(new Class[] {TabelaJPanel.class}).newInstance(caller);
 				adicionar.setLocationRelativeTo(table);
 				adicionar.setLocation(300, 300);
 				adicionar.setVisible(true);
