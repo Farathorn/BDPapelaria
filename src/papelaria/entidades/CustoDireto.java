@@ -15,7 +15,7 @@ public class CustoDireto extends Custo {
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"Valor", "Descri\u00E7u00C3o", "Shopping"};
+		String[] lista = {"Valor", "Descri\u00E7\u00C3o", "Shopping"};
 		
 		return lista;
 	}
