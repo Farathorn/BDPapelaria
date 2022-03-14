@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -70,6 +71,8 @@ public class CompraJPanel extends TabelaJPanel {
 						
 						table.setModel(dtm);
 						
+						entidades = lista;
+						
 						table.setVisible(false);
 						table.setVisible(true);
 					}
@@ -88,7 +91,7 @@ public class CompraJPanel extends TabelaJPanel {
 			e1.printStackTrace();
 		}
 	}
-	
+
 	class AcaoAdicionarButton implements ActionListener {
 		
 		private TabelaJPanel caller;
@@ -154,6 +157,5 @@ public class CompraJPanel extends TabelaJPanel {
 		btnAdicionar.setPreferredSize(new Dimension(70, 120));
 		panel.add(btnAdicionar, BorderLayout.NORTH);
 		panel.add(btnRemover, BorderLayout.CENTER);
-		
 	}
 }

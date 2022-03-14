@@ -3,6 +3,8 @@ package papelaria.paineis;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -13,6 +15,7 @@ import papelaria.DAOFactory;
 import papelaria.adicionar.TelaAdicionarJFrame;
 import papelaria.dao.TabelaDAO;
 import papelaria.entidades.Entidade;
+import papelaria.entidades.EntidadeForte;
 import papelaria.entidades.Franquia;
 import papelaria.entidades.Venda;
 
@@ -27,6 +30,9 @@ public class TabelaJPanel extends JPanel {
 	protected JButton btnRemover;
 	
 	protected ActionListener acaoAdicionar;
+	protected ActionListener acaoRemover;
+	
+	protected Entidade[] entidades;
 
 	public JTable getTable() {
 		return table;
@@ -71,6 +77,8 @@ public class TabelaJPanel extends JPanel {
 								return false;
 							}
 						};
+						
+						entidades = lista;
 						
 						table.setModel(dtm);
 						
@@ -136,13 +144,45 @@ public class TabelaJPanel extends JPanel {
 		
 		if (dao.adicionar(entidade, entidade.listAttributes(), entidade.getAttributes())) {
 			
-			DefaultTableModel model = (DefaultTableModel) table.getModel();
-			
 			table.removeAll();
 			preencherTable();
 			
 			return true;
 		}
+		
+		return false;
+	}
+	
+	public boolean removerLinha (EntidadeForte entidade) {
+		
+		if (dao.deletar(entidade) > 0) {
+			
+			table.removeAll();
+			preencherTable();
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public boolean removerLinha (int rowPosition) {
+		
+		try {
+			
+			Entidade daTabela = entidades[rowPosition];
+			
+			if (dao.deletar(daTabela, daTabela.listAttributes(), daTabela.getAttributes()) > 0) {
+				
+				table.removeAll();
+				preencherTable();
+				return true;
+			}
+		}
+		catch (IllegalArgumentException | SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		return false;
 	}
@@ -160,5 +200,18 @@ public class TabelaJPanel extends JPanel {
 		
 		acaoAdicionar = new AcaoAdicionarButton(this);
 		btnAdicionar.addActionListener(acaoAdicionar);
+		
+		acaoRemover = new ActionListener() {
+			
+			@Override
+			public void actionPerformed (ActionEvent e) {
+				
+				if (table.getSelectedRowCount() == 1) {
+					
+					removerLinha(table.getSelectedRow());
+				}
+			}
+		};
+		btnRemover.addActionListener(acaoRemover);
 	}
 }

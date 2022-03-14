@@ -112,12 +112,12 @@ public class TabelaDAOmySQL implements TabelaDAO {
 			
 			for (int i = 0; i < fields.length; i ++) {
 				
-				sql.concat(fields[i] + " = (\'" + values[i] + "\'), ");
+				sql = sql.concat(fields[i] + " = (\'" + values[i] + "\'), ");
 			}
 			
 			sql = sql.substring(0, sql.length() - 2);
 			
-			sql.concat("\nWHERE " + where + ';');
+			sql = sql.concat("\nWHERE " + where + ';');
 			
 			try {
 				
@@ -143,15 +143,23 @@ public class TabelaDAOmySQL implements TabelaDAO {
 	}
 	
 	//Faz um 'DELETE FROM' de uma entidade espec�fica procurando por um valor espec�fico
-	public int deletar (Entidade entidade, String where, String value) {
+	public int deletar (Entidade entidade, String[] where, String[] values) {
 
 		if(abreConexao()) {
 			
-			String sql = "DELETE FROM " + entidade.getDescriptor() + " WHERE " + where + "=" + value + ';';
+			String sql = "DELETE FROM " + entidade.getDescriptor() + " WHERE (";
+			
+			for (int i = 0; i < where.length; i ++) {
+				
+				sql = sql.concat(where[i] + " = \"" + values[i] + "\") AND (");
+			}
+			
+			sql = sql.substring(0, sql.length() - 6);
+			sql = sql.concat(";");
 			
 			try {
 				
-				//Executa a instru��o sql no banco de dados e retorna quantas linhas de tabela foram afetadas
+				//Executa a instrução sql no banco de dados e retorna quantas linhas de tabela foram afetadas
 				return connection.createStatement().executeUpdate(sql);
 			}
 			catch (SQLTimeoutException sqlTimeoutException) {
@@ -178,8 +186,8 @@ public class TabelaDAOmySQL implements TabelaDAO {
 		if (abreConexao()) {
 			
 			//Aqui no c�digo, toda interface utiliza do m�todo getCodigo e setCodigo, mas no banco de dados o nome desses campos � "CPF" para seres humanos.
-			String codigo = "C�digo";
-			if (entidade.getDescriptor() == "Funcion�rio" || entidade.getDescriptor() == "Cliente") {
+			String codigo = "C\u00F3digo";
+			if (entidade.getDescriptor() == "Funcion\u00E1rio" || entidade.getDescriptor() == "Cliente") {
 				
 				codigo = "CPF";
 			}
