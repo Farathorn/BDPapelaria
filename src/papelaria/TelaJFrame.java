@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import papelaria.paineis.ClienteJPanel;
 import papelaria.paineis.CustosDiretosJPanel;
 import papelaria.paineis.CustosIndiretosJPanel;
 import papelaria.paineis.FranquiaJPanel;
@@ -181,17 +182,28 @@ public class TelaJFrame extends JFrame {
 		mntmMenuItem_7.setBorder(null);
 		mnNewMenu_1.add(mntmMenuItem_7);
 		
-		JMenuItem mntmMenuItem_8 = new JMenuItem("Terceiros");
-		mntmMenuItem_8.addActionListener(new ActionListener() {
+		JMenuItem mntmMenuItem_9 = new JMenuItem("Terceiros");
+		mntmMenuItem_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				switchPane(new TerceirosJPanel ());
 				setTitle("Papel & Art - Terceiros");
 			}
 		});
-		mntmMenuItem_8.setMargin(new Insets(0, 0, 0, 0));
+		
+		JMenuItem mntmMenuItem_8 = new JMenuItem("Clientes");
 		mntmMenuItem_8.setBorder(null);
+		mntmMenuItem_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				switchPane(new ClienteJPanel());
+				setTitle("Papel & Art - Clientes");
+			}
+		});
 		mnNewMenu_1.add(mntmMenuItem_8);
+		mntmMenuItem_9.setMargin(new Insets(0, 0, 0, 0));
+		mntmMenuItem_9.setBorder(null);
+		mnNewMenu_1.add(mntmMenuItem_9);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
