@@ -15,7 +15,7 @@ public class Estoque implements EntidadeForte {
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"C\u00F3digo", "Contato", "Endereço"};
+		String[] lista = {"C\u00F3digo", "Contato", "Endere\u00E7o"};
 		
 		return lista;
 	}

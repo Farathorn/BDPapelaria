@@ -1,4 +1,4 @@
-package papelaria;
+package papelaria.adicionar;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -11,11 +11,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import papelaria.paineis.TabelaJPanel;
 
-public class AdicionarVendaJFrame extends JFrame {
 
+public class AdicionarVendaJFrame extends TelaAdicionarJFrame {
+	
 	private JPanel contentPane;
-	private JTextField textField;
+	
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
@@ -27,7 +29,10 @@ public class AdicionarVendaJFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdicionarVendaJFrame () {
+	public AdicionarVendaJFrame (TabelaJPanel caller) {
+		
+		super(caller);
+		
 		setType(Type.POPUP);
 		setAlwaysOnTop(true);
 		setResizable(false);
@@ -52,28 +57,28 @@ public class AdicionarVendaJFrame extends JFrame {
 		lblNewLabel.setBounds(30, 14, 100, 14);
 		panel.add(lblNewLabel);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(160, 75, 120, 20);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		textField_2 = new JTextField();
+		textField_2.setBounds(160, 75, 120, 20);
+		panel.add(textField_2);
+		textField_2.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Valor:");
 		lblNewLabel_1.setBounds(30, 78, 100, 14);
 		panel.add(lblNewLabel_1);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(160, 106, 120, 20);
-		panel.add(textField_2);
-		textField_2.setColumns(10);
+		textField_3 = new JTextField();
+		textField_3.setBounds(160, 106, 120, 20);
+		panel.add(textField_3);
+		textField_3.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Pagamento:");
 		lblNewLabel_2.setBounds(30, 109, 100, 14);
 		panel.add(lblNewLabel_2);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(160, 42, 120, 20);
-		panel.add(textField_3);
-		textField_3.setColumns(10);
+		textField_1 = new JTextField();
+		textField_1.setBounds(160, 42, 120, 20);
+		panel.add(textField_1);
+		textField_1.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Tipo:");
 		lblNewLabel_3.setBounds(30, 45, 100, 14);
@@ -118,22 +123,17 @@ public class AdicionarVendaJFrame extends JFrame {
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.SOUTH);
 		
-		JButton btnAdicionar = new JButton("Adicionar");
-		btnAdicionar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-			}
-		});
 		panel_1.add(btnAdicionar);
-		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				dispose();
-			}
-		});
 		panel_1.add(btnCancelar);
+		
+		keyCheckLock();
+	}
+	
+	protected String[] getAttributes () {
+
+		return new String[] {textField.getText(), textField_2.getText(),
+							textField_2.getText(), textField_3.getText(),
+							textField_4.getText(), textField_5.getText(),
+							textField_6.getText(), textField_7.getText()};
 	}
 }

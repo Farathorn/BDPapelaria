@@ -15,7 +15,7 @@ public class Custo implements Entidade {
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"Valor", "Descrição"};
+		String[] lista = {"Valor", "Descri\00E7\u00C3o"};
 		
 		return lista;
 	}

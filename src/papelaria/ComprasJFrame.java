@@ -8,118 +8,29 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import papelaria.dao.TabelaDAO;
+import papelaria.entidades.Entidade;
 import papelaria.entidades.ItemComprado;
+import papelaria.paineis.CompraJPanel;
+import papelaria.paineis.TabelaJPanel;
+
+import javax.swing.JPanel;
 
 
 public class ComprasJFrame extends JFrame {
-	private JTable table;
-	TabelaDAO dao = DAOFactory.createDAO();
 
-	private void preencherTable () {
-		
-		ItemComprado[] filtro = (ItemComprado[]) dao.listar(new ItemComprado());
-		ItemComprado[] lista;
-		if (filtro == null) {
-			
-			table.setModel(new DefaultTableModel(null, new String[] {
-					"Item", "Pre\u00E7o"
-			}));
-		}
-		else {
-			
-			lista = filtro;
-			
-			String[][] tabela = new String[lista.length][new ItemComprado().getAttributeCount() - 1];
-			
-			if (lista.length > 0) {
-				
-				for (int i = 0; i < lista.length; i ++) {
-					
-					tabela[i] = new String[] {lista[i].getProduto().getDescricao(), Double.toString(lista[i].getValor())};
-				}
-				
-				DefaultTableModel dtm = (DefaultTableModel) table.getModel();
-				for (int i = 0; i < table.getRowCount(); i ++) {
-					
-					dtm.removeRow(i);
-				}
-				
-				table.setModel(new DefaultTableModel(tabela, new String[] {
-						"Item", "Pre\u00E7o"
-				}));
-			}
-		}
-	}
-
+	private TabelaJPanel caller;
 	/**
 	 * Create the frame.
 	 */
-	public ComprasJFrame () {
+	public ComprasJFrame (TabelaJPanel caller) {
+		
+		this.caller = caller;
 
 		setResizable(false);
 		setBounds(100, 100, 450, 300);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		getContentPane().add(scrollPane, BorderLayout.CENTER);
-		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-			},
-			new String[] {
-				"Item", "Pre\u00E7o"
-			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		scrollPane.setViewportView(table);
-
-		preencherTable();
+		CompraJPanel panel = new CompraJPanel(caller);
+		getContentPane().add(panel, BorderLayout.CENTER);
 	}
 
 }

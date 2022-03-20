@@ -1,4 +1,4 @@
-package papelaria;
+package papelaria.adicionar;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -11,11 +11,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import papelaria.paineis.TabelaJPanel;
 
-public class AdicionarFuncionarioJFrame extends JFrame {
 
+public class AdicionarFuncionarioJFrame extends TelaAdicionarJFrame {
+	
 	private JPanel contentPane;
-	private JTextField textField;
+	
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
@@ -29,7 +31,10 @@ public class AdicionarFuncionarioJFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdicionarFuncionarioJFrame () {
+	public AdicionarFuncionarioJFrame (TabelaJPanel caller) {
+		
+		super(caller);
+		
 		setType(Type.POPUP);
 		setAlwaysOnTop(true);
 		setResizable(false);
@@ -138,16 +143,19 @@ public class AdicionarFuncionarioJFrame extends JFrame {
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.SOUTH);
 		
-		JButton btnAdicionar = new JButton("Adicionar");
 		panel_1.add(btnAdicionar);
-		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				dispose();
-			}
-		});
 		panel_1.add(btnCancelar);
+		
+		keyCheckLock();
+	}
+
+	@Override
+	protected String[] getAttributes () {
+
+		return new String[] {textField.getText(), textField_1.getText(),
+							textField_2.getText(), textField_3.getText(),
+							textField_4.getText(), textField_5.getText(),
+							textField_6.getText(), textField_7.getText(),
+							textField_8.getText(), textField_9.getText()};
 	}
 }

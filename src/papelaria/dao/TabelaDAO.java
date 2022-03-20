@@ -9,7 +9,7 @@ public interface TabelaDAO {
 	
 	public boolean atualizar (Entidade t, String where, String[] fields, String[] values);
 	
-	public int deletar (Entidade t, String where, String value);
+	public int deletar (Entidade t, String[] where, String[] value);
 	
 	public int deletar (EntidadeForte t);
 	

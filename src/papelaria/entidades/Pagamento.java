@@ -14,7 +14,7 @@ public class Pagamento extends Custo {
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"Valor", "Descri\u00E7\u00C3o", "Tipo", "Funcion�rio"};
+		String[] lista = {"Valor", "Descri\u00E7\u00C3o", "Tipo", "Funcion\u00E1rio"};
 		
 		return lista;
 	}

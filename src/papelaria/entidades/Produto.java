@@ -15,7 +15,7 @@ public class Produto implements EntidadeForte {
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"C\u00F3digo", "Quantidade", "Descri\u00E7\u00C3o", "Preço_Unit\u00E1rio", "Preço_Total", "Estoque"};
+		String[] lista = {"C\u00F3digo", "Quantidade", "Descri\u00E7\u00C3o", "Pre\u00E7o_Unit\u00E1rio", "Pre\u00E7o_Total", "Estoque"};
 		
 		return lista;
 	}

@@ -15,7 +15,7 @@ public class Shopping implements EntidadeForte {
 	
 	public String[] listAttributes () {
 		
-		String[] lista = {"C\u00F3digo", "Nome", "Endereço", "Aluguel"};
+		String[] lista = {"C\u00F3digo", "Nome", "Endere\u00E7o", "Aluguel"};
 		
 		return lista;
 	}

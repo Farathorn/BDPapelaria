@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class ItemComprado implements Entidade {
 
 	public static String descriptor = "Itens_da_Venda";
-	public static int attributeCount = 2;
+	public static int attributeCount = 3;
 	public static int entityCount = 2;
 	
 	public String getDescriptor () {
@@ -15,7 +15,7 @@ public class ItemComprado implements Entidade {
 	
 	public String[] listAttributes () {
 		
-		return new String[] {"Item", "Venda", "Valor"};
+		return new String[] {"Item", "Venda", "Quantidade"};
 	}
 	
 	public void setAttributes (ArrayList <String> set) {
@@ -26,6 +26,7 @@ public class ItemComprado implements Entidade {
 			produto.setCodigo(set.get(0));
 			venda = new Venda();
 			venda.setCodigo(set.get(1));
+			quantidade = Integer.parseInt(set.get(2));
 		}
 	}
 	
@@ -40,7 +41,7 @@ public class ItemComprado implements Entidade {
 		
 		atributos[0] = produto.getCodigo();
 		atributos[1] = venda.getCodigo();
-		atributos[2] = Double.toString(valor);
+		atributos[2] = Integer.toString(quantidade);
 		
 		return atributos;
 	}
@@ -49,7 +50,6 @@ public class ItemComprado implements Entidade {
 	
 		produto = (Produto) entities.get(0);
 		venda = (Venda) entities.get(1);
-		valor = venda.getValor();
 	}
 	
 	public int getEntityCount () {
@@ -64,8 +64,18 @@ public class ItemComprado implements Entidade {
 	
 	private Produto produto;
 	private Venda venda;
-	private double valor;
+	private int quantidade;
 	
+	public int getQuantidade () {
+	
+		return quantidade;
+	}
+	
+	public void setQuantidade (int quantidade) {
+	
+		this.quantidade = quantidade;
+	}
+
 	public Produto getProduto () {
 	
 		return produto;
@@ -84,15 +94,5 @@ public class ItemComprado implements Entidade {
 	public void setVenda (Venda venda) {
 	
 		this.venda = venda;
-	}
-	
-	public double getValor () {
-	
-		return valor;
-	}
-	
-	public void setValor (double valor) {
-	
-		this.valor = valor;
 	}
 }
